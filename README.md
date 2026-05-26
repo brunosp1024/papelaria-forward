@@ -22,8 +22,10 @@ Também é possível consultar a lista de comissões por vendedor, com base nas 
 ├── README.md
 └── backend/
 	├── manage.py
+	├── pytest.ini
+	├── apps/
+	│   └── core/
 	├── config/
-	├── core/
 	├── .env.example
 	└── db.sqlite3
 ```
