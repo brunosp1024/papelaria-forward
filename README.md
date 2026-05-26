@@ -90,8 +90,10 @@ Executar testes Django:
 
 ```bash
 cd backend
-python manage.py test
+pytest
 ```
+
+O projeto usa `backend/config/settings.py` para os ambientes normais e `backend/config/settings_test.py` para testes.
 
 ## Gerenciamento de Dependências com uv
 
@@ -126,7 +128,8 @@ Exemplo em `backend/.env.example`:
 - `SECRET_KEY`: chave secreta do Django.
 - `DEBUG`: `True` para desenvolvimento local.
 - `ALLOWED_HOSTS`: hosts permitidos separados por vírgula.
-- `DATABASE_URL`: presente no exemplo, mas atualmente a configuração ativa usa SQLite via `BASE_DIR / "db.sqlite3"`.
+- `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_HOST` e `DB_PORT`: configuram o PostgreSQL do ambiente local.
+- `backend/config/settings_test.py` isola a configuração de testes.
 
 ## Observações
 
