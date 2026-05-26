@@ -12,7 +12,7 @@ Também é possível consultar a lista de comissões por vendedor, com base nas 
 - Django 6
 - Django REST Framework
 - django-cors-headers
-- SQLite (desenvolvimento)
+- PostgreSQL (desenvolvimento)
 
 ## Estrutura do Projeto
 
