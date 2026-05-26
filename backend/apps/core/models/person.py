@@ -1,6 +1,7 @@
 from django.db import models
 
-from backend.utils.validators import validate_phone
+from utils.validators import validate_phone
+
 from .mixins import BaseModel
 
 
