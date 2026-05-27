@@ -1,3 +1,4 @@
+from rest_framework import serializers
 from apps.core.serializers.serializers import PersonSerializer
 from apps.seller.models import Seller
 
@@ -9,7 +10,7 @@ class SellerCreateUpdateSerializer(PersonSerializer):
         read_only_fields = ["id"]
 
 
-class SellerDetailSerializer(PersonSerializer):
+class SellerDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model  = Seller
@@ -25,7 +26,7 @@ class SellerDetailSerializer(PersonSerializer):
         ]
 
 
-class SellerListSerializer(PersonSerializer):
+class SellerListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model  = Seller

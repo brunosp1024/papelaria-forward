@@ -9,7 +9,7 @@ class CustomerCreateUpdateSerializer(PersonSerializer):
         fields = ["id", "name", "email", "phone"]
         read_only_fields = ["id"]
 
-class CustomerDetailSerializer(PersonSerializer):
+class CustomerDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model  = Customer
@@ -24,7 +24,7 @@ class CustomerDetailSerializer(PersonSerializer):
             "updated_by"
         ]
 
-class CustomerListSerializer(PersonSerializer):
+class CustomerListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model  = Customer
