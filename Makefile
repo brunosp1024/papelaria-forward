@@ -2,6 +2,7 @@
 
 BACKEND_DIR := backend
 UV := uv
+BACKEND_CLEAN_DIRS := .pytest_cache coverage htmlcov .mypy_cache .ruff_cache
 
 help:  ## Show this help message
 	@echo "Available commands:"
@@ -26,7 +27,7 @@ format:   ## Format code
 clean:  ## Clean cache files
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type f -name "*.pyc" -delete
-	rm -rf .pytest_cache coverage htmlcov
+	rm -rf $(addprefix $(BACKEND_DIR)/,$(BACKEND_CLEAN_DIRS))
 
 docker-up:  ## Start Docker containers
 	docker compose up --build -d
