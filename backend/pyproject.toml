@@ -15,3 +15,22 @@ dependencies = [
     "pytest-django>=4.12.0",
     "python-dotenv>=1.2.2",
 ]
+
+[dependency-groups]
+dev = [
+    "bandit>=1.9.4",
+    "mypy>=2.1.0",
+    "pip-audit>=2.10.0",
+    "ruff>=0.15.14",
+]
+
+[tool.mypy]
+python_version = "3.12"
+explicit_package_bases = true
+
+[[tool.mypy.overrides]]
+module = ["django.*", "rest_framework.*", "django_filters", "django_filters.*"]
+ignore_missing_imports = true
+
+[tool.bandit]
+exclude_dirs = ["tests", "*/tests", "*/tests/*", "apps/*/tests", "apps/*/tests/*"]
