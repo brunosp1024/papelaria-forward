@@ -1,0 +1,460 @@
+[
+  {
+    "model": "sale.commissionconfig",
+    "pk": "379a8f55-c3a1-41f9-8a0c-3af5d7619094",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "day_of_week": 0,
+      "min_percentage": "1.50",
+      "max_percentage": "7.50"
+    }
+  },
+  {
+    "model": "sale.commissionconfig",
+    "pk": "49e2312e-588c-4b15-93f7-a5856c735cb9",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "day_of_week": 2,
+      "min_percentage": "1.50",
+      "max_percentage": "7.50"
+    }
+  },
+  {
+    "model": "sale.commissionconfig",
+    "pk": "19627e6a-f90b-4502-80db-a18698483dc0",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "day_of_week": 4,
+      "min_percentage": "1.00",
+      "max_percentage": "5.00"
+    }
+  },
+  {
+    "model": "sale.sale",
+    "pk": "03979c7e-963c-4a17-957b-03dea10d670c",
+    "fields": {
+      "created_at": "2026-01-15T10:00:00Z",
+      "updated_at": "2026-01-15T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "invoice_number": "INV-00001",
+      "datetime": "2026-01-15T10:00:00Z",
+      "customer": "c888d5b6-272c-4eaa-8fdc-28f0f00cf2bb",
+      "seller": "8a76ecf7-531b-4de1-aa75-1332957431e5"
+    }
+  },
+  {
+    "model": "sale.sale",
+    "pk": "3438ce53-5efa-47bb-b438-29fdc6c1cbba",
+    "fields": {
+      "created_at": "2026-01-16T10:00:00Z",
+      "updated_at": "2026-01-16T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "invoice_number": "INV-00002",
+      "datetime": "2026-01-16T10:00:00Z",
+      "customer": "b825947d-8575-4148-b46a-7d03bd768f69",
+      "seller": "1ea15da0-72e6-476f-9d02-58d755c9aaf2"
+    }
+  },
+  {
+    "model": "sale.sale",
+    "pk": "0be2ad74-3f49-4e40-884d-e19e0898bf42",
+    "fields": {
+      "created_at": "2026-01-17T10:00:00Z",
+      "updated_at": "2026-01-17T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "invoice_number": "INV-00003",
+      "datetime": "2026-01-17T10:00:00Z",
+      "customer": "c4ef5a95-5f20-49e2-875a-591b6b1c779e",
+      "seller": "849800d9-1c4c-4b32-ab28-5c1397d757aa"
+    }
+  },
+  {
+    "model": "sale.sale",
+    "pk": "69289060-2839-420e-b85d-51286c949704",
+    "fields": {
+      "created_at": "2026-01-18T10:00:00Z",
+      "updated_at": "2026-01-18T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "invoice_number": "INV-00004",
+      "datetime": "2026-01-18T10:00:00Z",
+      "customer": "e08850b8-496d-47bc-b342-7ec7755f25eb",
+      "seller": "072168d2-3ce4-4aa2-ab46-8dbe4205739e"
+    }
+  },
+  {
+    "model": "sale.sale",
+    "pk": "adb87d41-fe90-4051-bea8-5db63a9d8ebc",
+    "fields": {
+      "created_at": "2026-01-19T10:00:00Z",
+      "updated_at": "2026-01-19T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "invoice_number": "INV-00005",
+      "datetime": "2026-01-19T10:00:00Z",
+      "customer": "45718fc2-4b0c-4198-b069-1212bb80494e",
+      "seller": "88bc3be6-22b0-4e22-afc2-4b873c8fc2a5"
+    }
+  },
+  {
+    "model": "sale.sale",
+    "pk": "f37a65db-d80a-422c-a60f-8d670b5c994c",
+    "fields": {
+      "created_at": "2026-01-20T10:00:00Z",
+      "updated_at": "2026-01-20T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "invoice_number": "INV-00006",
+      "datetime": "2026-01-20T10:00:00Z",
+      "customer": "65907f96-5432-4df3-80cc-3c64f25595b7",
+      "seller": "8a76ecf7-531b-4de1-aa75-1332957431e5"
+    }
+  },
+  {
+    "model": "sale.sale",
+    "pk": "6f7fb545-5169-4568-b140-808ac1318e36",
+    "fields": {
+      "created_at": "2026-01-21T10:00:00Z",
+      "updated_at": "2026-01-21T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "invoice_number": "INV-00007",
+      "datetime": "2026-01-21T10:00:00Z",
+      "customer": "4264b5a6-9161-4887-a5ed-3af46d6bc038",
+      "seller": "1ea15da0-72e6-476f-9d02-58d755c9aaf2"
+    }
+  },
+  {
+    "model": "sale.sale",
+    "pk": "d124dbc8-075d-42b6-9ec5-c90b6f678fb5",
+    "fields": {
+      "created_at": "2026-01-22T10:00:00Z",
+      "updated_at": "2026-01-22T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "invoice_number": "INV-00008",
+      "datetime": "2026-01-22T10:00:00Z",
+      "customer": "7b674539-63ed-4033-adf0-70c9914ecb94",
+      "seller": "849800d9-1c4c-4b32-ab28-5c1397d757aa"
+    }
+  },
+  {
+    "model": "sale.sale",
+    "pk": "0574409a-8114-4d3e-bf41-3ea5cbf2ded0",
+    "fields": {
+      "created_at": "2026-01-23T10:00:00Z",
+      "updated_at": "2026-01-23T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "invoice_number": "INV-00009",
+      "datetime": "2026-01-23T10:00:00Z",
+      "customer": "233b235c-2214-40d3-b5c6-18b9d115511d",
+      "seller": "072168d2-3ce4-4aa2-ab46-8dbe4205739e"
+    }
+  },
+  {
+    "model": "sale.sale",
+    "pk": "d11659bd-36eb-4ded-b7a2-4227b8cc35cc",
+    "fields": {
+      "created_at": "2026-01-24T10:00:00Z",
+      "updated_at": "2026-01-24T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "invoice_number": "INV-00010",
+      "datetime": "2026-01-24T10:00:00Z",
+      "customer": "60ce4be4-e0ba-4f6b-97e9-c6739e29b9cf",
+      "seller": "88bc3be6-22b0-4e22-afc2-4b873c8fc2a5"
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "302c3be4-a1a8-4c3d-b21e-f6bf1a28ec2a",
+    "fields": {
+      "created_at": "2026-01-15T10:00:00Z",
+      "updated_at": "2026-01-15T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "03979c7e-963c-4a17-957b-03dea10d670c",
+      "product": "01522e7a-663f-401d-ad5d-63bd202c2a77",
+      "quantity": 2
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "3f0eef04-1446-40f6-ae47-175e5c9675c9",
+    "fields": {
+      "created_at": "2026-01-16T10:00:00Z",
+      "updated_at": "2026-01-16T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "3438ce53-5efa-47bb-b438-29fdc6c1cbba",
+      "product": "bf7e74a1-9285-46fb-b32d-20dab7685b11",
+      "quantity": 1
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "7611b4b9-b05e-4a66-9c39-f08deed20459",
+    "fields": {
+      "created_at": "2026-01-16T10:00:00Z",
+      "updated_at": "2026-01-16T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "3438ce53-5efa-47bb-b438-29fdc6c1cbba",
+      "product": "8bebbdd0-6d45-4d75-8f0b-7969c1c81f51",
+      "quantity": 1
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "fea1ba29-1981-4c9f-ae0c-8c105ef32c90",
+    "fields": {
+      "created_at": "2026-01-17T10:00:00Z",
+      "updated_at": "2026-01-17T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "0be2ad74-3f49-4e40-884d-e19e0898bf42",
+      "product": "4b5878fc-4d05-4a5a-8418-a796343c76b8",
+      "quantity": 3
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "00dd22ee-cab4-4b4e-8203-22e12796906a",
+    "fields": {
+      "created_at": "2026-01-17T10:00:00Z",
+      "updated_at": "2026-01-17T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "0be2ad74-3f49-4e40-884d-e19e0898bf42",
+      "product": "d83601d7-9201-4f58-a3e4-03ceacebcb88",
+      "quantity": 3
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "0ddbcf9e-0282-4924-b87e-42a21c0ab07e",
+    "fields": {
+      "created_at": "2026-01-17T10:00:00Z",
+      "updated_at": "2026-01-17T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "0be2ad74-3f49-4e40-884d-e19e0898bf42",
+      "product": "29657f1c-5294-426f-bf3e-02c64f2a6426",
+      "quantity": 3
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "8be00343-496e-4695-b1d1-01fceaddba92",
+    "fields": {
+      "created_at": "2026-01-18T10:00:00Z",
+      "updated_at": "2026-01-18T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "69289060-2839-420e-b85d-51286c949704",
+      "product": "62bb6260-97a8-4253-9aa6-e64e9373ed9c",
+      "quantity": 1
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "057a3e0c-0f51-4924-a5e6-481231fbd9b8",
+    "fields": {
+      "created_at": "2026-01-19T10:00:00Z",
+      "updated_at": "2026-01-19T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "adb87d41-fe90-4051-bea8-5db63a9d8ebc",
+      "product": "a1c3bf7d-a8a8-4403-ac60-f7f66154df0d",
+      "quantity": 4
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "6f81a29f-2f0b-4f08-a145-c8e95a772d76",
+    "fields": {
+      "created_at": "2026-01-19T10:00:00Z",
+      "updated_at": "2026-01-19T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "adb87d41-fe90-4051-bea8-5db63a9d8ebc",
+      "product": "172ef32a-6952-41df-b0cc-98188aecbae7",
+      "quantity": 3
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "31252370-1e96-4051-99fa-b8ba46426547",
+    "fields": {
+      "created_at": "2026-01-20T10:00:00Z",
+      "updated_at": "2026-01-20T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "f37a65db-d80a-422c-a60f-8d670b5c994c",
+      "product": "d2e00dd6-237f-4d41-b784-6a14cbad5156",
+      "quantity": 2
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "51ba15df-da12-4965-84dd-8d4b50110d14",
+    "fields": {
+      "created_at": "2026-01-20T10:00:00Z",
+      "updated_at": "2026-01-20T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "f37a65db-d80a-422c-a60f-8d670b5c994c",
+      "product": "be4a7880-ad8f-4cfb-a6b6-97ba37726999",
+      "quantity": 1
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "2f171f5b-a381-4cc8-b046-955166cdf67e",
+    "fields": {
+      "created_at": "2026-01-20T10:00:00Z",
+      "updated_at": "2026-01-20T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "f37a65db-d80a-422c-a60f-8d670b5c994c",
+      "product": "0962d507-bdf1-4eb9-987e-203e7b2e1601",
+      "quantity": 1
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "fe6f7a2e-f84f-4126-b5eb-ddf35a62180b",
+    "fields": {
+      "created_at": "2026-01-21T10:00:00Z",
+      "updated_at": "2026-01-21T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "6f7fb545-5169-4568-b140-808ac1318e36",
+      "product": "9fff8e23-f6c3-44ff-81b0-41922b0ee0a2",
+      "quantity": 3
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "3a7a6f34-dc14-4c80-bbcf-14dba2d27056",
+    "fields": {
+      "created_at": "2026-01-22T10:00:00Z",
+      "updated_at": "2026-01-22T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "d124dbc8-075d-42b6-9ec5-c90b6f678fb5",
+      "product": "1674d641-b31c-4171-8c3a-814774418096",
+      "quantity": 5
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "29eb2893-38dd-45a0-ab1b-a7886e75c666",
+    "fields": {
+      "created_at": "2026-01-22T10:00:00Z",
+      "updated_at": "2026-01-22T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "d124dbc8-075d-42b6-9ec5-c90b6f678fb5",
+      "product": "f17533f8-161a-43ae-a1d1-f2e6c27f42a7",
+      "quantity": 2
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "c2853e11-9fd8-4345-a181-0fd09b15fe90",
+    "fields": {
+      "created_at": "2026-01-23T10:00:00Z",
+      "updated_at": "2026-01-23T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "0574409a-8114-4d3e-bf41-3ea5cbf2ded0",
+      "product": "8bebbdd0-6d45-4d75-8f0b-7969c1c81f51",
+      "quantity": 5
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "510fdc07-b865-408a-9dfe-188a482f8c80",
+    "fields": {
+      "created_at": "2026-01-23T10:00:00Z",
+      "updated_at": "2026-01-23T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "0574409a-8114-4d3e-bf41-3ea5cbf2ded0",
+      "product": "b0ee34fa-affc-46c1-8d61-4eeb98b043b7",
+      "quantity": 5
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "1f4c6329-530d-4432-a4ff-284df0f87a74",
+    "fields": {
+      "created_at": "2026-01-23T10:00:00Z",
+      "updated_at": "2026-01-23T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "0574409a-8114-4d3e-bf41-3ea5cbf2ded0",
+      "product": "4b5878fc-4d05-4a5a-8418-a796343c76b8",
+      "quantity": 1
+    }
+  },
+  {
+    "model": "sale.saleitem",
+    "pk": "1530a41b-40e5-4238-aa57-6f5f86dbe344",
+    "fields": {
+      "created_at": "2026-01-24T10:00:00Z",
+      "updated_at": "2026-01-24T10:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "sale": "d11659bd-36eb-4ded-b7a2-4227b8cc35cc",
+      "product": "d83601d7-9201-4f58-a3e4-03ceacebcb88",
+      "quantity": 3
+    }
+  }
+]

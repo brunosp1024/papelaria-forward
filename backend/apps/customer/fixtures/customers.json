@@ -1,0 +1,170 @@
+[
+  {
+    "model": "customer.customer",
+    "pk": "c888d5b6-272c-4eaa-8fdc-28f0f00cf2bb",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "name": "Joao Silva",
+      "email": "customer1@example.com",
+      "phone": "11999900000"
+    }
+  },
+  {
+    "model": "customer.customer",
+    "pk": "b825947d-8575-4148-b46a-7d03bd768f69",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "name": "Maria Oliveira",
+      "email": "customer2@example.com",
+      "phone": "11999900001"
+    }
+  },
+  {
+    "model": "customer.customer",
+    "pk": "c4ef5a95-5f20-49e2-875a-591b6b1c779e",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "name": "Pedro Santos",
+      "email": "customer3@example.com",
+      "phone": "11999900002"
+    }
+  },
+  {
+    "model": "customer.customer",
+    "pk": "e08850b8-496d-47bc-b342-7ec7755f25eb",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "name": "Julia Costa",
+      "email": "customer4@example.com",
+      "phone": "11999900003"
+    }
+  },
+  {
+    "model": "customer.customer",
+    "pk": "45718fc2-4b0c-4198-b069-1212bb80494e",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "name": "Rafael Souza",
+      "email": "customer5@example.com",
+      "phone": "11999900004"
+    }
+  },
+  {
+    "model": "customer.customer",
+    "pk": "65907f96-5432-4df3-80cc-3c64f25595b7",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "name": "Camila Lima",
+      "email": "customer6@example.com",
+      "phone": "11999900005"
+    }
+  },
+  {
+    "model": "customer.customer",
+    "pk": "4264b5a6-9161-4887-a5ed-3af46d6bc038",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "name": "Bruno Ferreira",
+      "email": "customer7@example.com",
+      "phone": "11999900006"
+    }
+  },
+  {
+    "model": "customer.customer",
+    "pk": "7b674539-63ed-4033-adf0-70c9914ecb94",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "name": "Larissa Alves",
+      "email": "customer8@example.com",
+      "phone": "11999900007"
+    }
+  },
+  {
+    "model": "customer.customer",
+    "pk": "233b235c-2214-40d3-b5c6-18b9d115511d",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "name": "Diego Rocha",
+      "email": "customer9@example.com",
+      "phone": "11999900008"
+    }
+  },
+  {
+    "model": "customer.customer",
+    "pk": "60ce4be4-e0ba-4f6b-97e9-c6739e29b9cf",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "name": "Beatriz Nunes",
+      "email": "customer10@example.com",
+      "phone": "11999900009"
+    }
+  },
+  {
+    "model": "customer.customer",
+    "pk": "f5e35a4f-fc5d-4573-9db3-f0c87226a09e",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "name": "Thiago Cardoso",
+      "email": "customer11@example.com",
+      "phone": "11999900010"
+    }
+  },
+  {
+    "model": "customer.customer",
+    "pk": "aba8e165-53c7-4456-9b4e-04ae40a0d382",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "name": "Isabela Martins",
+      "email": "customer12@example.com",
+      "phone": "11999900011"
+    }
+  }
+]

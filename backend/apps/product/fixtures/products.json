@@ -1,0 +1,302 @@
+[
+  {
+    "model": "product.product",
+    "pk": "01522e7a-663f-401d-ad5d-63bd202c2a77",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00001",
+      "description": "Caderno 200fls",
+      "unit_value": "25.90",
+      "commission_percentage": "5.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "1674d641-b31c-4171-8c3a-814774418096",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00002",
+      "description": "Caneta Esferografica",
+      "unit_value": "3.50",
+      "commission_percentage": "3.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "f17533f8-161a-43ae-a1d1-f2e6c27f42a7",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00003",
+      "description": "Mochila Escolar",
+      "unit_value": "129.90",
+      "commission_percentage": "7.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "bf7e74a1-9285-46fb-b32d-20dab7685b11",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00004",
+      "description": "Lapis Preto 12un",
+      "unit_value": "12.80",
+      "commission_percentage": "4.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "8bebbdd0-6d45-4d75-8f0b-7969c1c81f51",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00005",
+      "description": "Borracha Branca",
+      "unit_value": "1.50",
+      "commission_percentage": "2.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "b0ee34fa-affc-46c1-8d61-4eeb98b043b7",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00006",
+      "description": "Regua 30cm",
+      "unit_value": "5.90",
+      "commission_percentage": "3.50"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "4b5878fc-4d05-4a5a-8418-a796343c76b8",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00007",
+      "description": "Tesoura Escolar",
+      "unit_value": "18.90",
+      "commission_percentage": "5.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "d83601d7-9201-4f58-a3e4-03ceacebcb88",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00008",
+      "description": "Cola Bastao",
+      "unit_value": "8.90",
+      "commission_percentage": "3.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "29657f1c-5294-426f-bf3e-02c64f2a6426",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00009",
+      "description": "Marcador Permanente",
+      "unit_value": "9.50",
+      "commission_percentage": "4.50"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "62bb6260-97a8-4253-9aa6-e64e9373ed9c",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00010",
+      "description": "Pasta Catalogo",
+      "unit_value": "22.00",
+      "commission_percentage": "5.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "6af8683b-4f32-41ca-b831-bbf62d86915d",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00011",
+      "description": "Papel A4 500fls",
+      "unit_value": "35.90",
+      "commission_percentage": "4.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "4d95860b-35ae-40e1-9cf8-1ff7a946f386",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00012",
+      "description": "Agenda 2026",
+      "unit_value": "45.00",
+      "commission_percentage": "6.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "a1c3bf7d-a8a8-4403-ac60-f7f66154df0d",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00013",
+      "description": "Corretivo Liquido",
+      "unit_value": "7.50",
+      "commission_percentage": "3.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "172ef32a-6952-41df-b0cc-98188aecbae7",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00014",
+      "description": "Grampeador",
+      "unit_value": "32.00",
+      "commission_percentage": "5.50"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "35b7cb84-dba2-453b-aa27-0c087b0c1f56",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00015",
+      "description": "Grampos 26/6",
+      "unit_value": "6.80",
+      "commission_percentage": "2.50"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "d2e00dd6-237f-4d41-b784-6a14cbad5156",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00016",
+      "description": "Post-it 100fls",
+      "unit_value": "14.90",
+      "commission_percentage": "4.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "be4a7880-ad8f-4cfb-a6b6-97ba37726999",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00017",
+      "description": "Fichario A4",
+      "unit_value": "38.50",
+      "commission_percentage": "6.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "0962d507-bdf1-4eb9-987e-203e7b2e1601",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00018",
+      "description": "Caneta Marca Texto",
+      "unit_value": "5.90",
+      "commission_percentage": "3.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "9fff8e23-f6c3-44ff-81b0-41922b0ee0a2",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00019",
+      "description": "Clips Metalico 50un",
+      "unit_value": "4.20",
+      "commission_percentage": "2.00"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": "758399fd-6f55-4684-b929-a995a1f82c62",
+    "fields": {
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-01-10T09:00:00Z",
+      "created_by": 1,
+      "updated_by": 1,
+      "deleted_at": null,
+      "code": "PROD-00020",
+      "description": "Durex 18mm",
+      "unit_value": "3.90",
+      "commission_percentage": "2.50"
+    }
+  }
+]
