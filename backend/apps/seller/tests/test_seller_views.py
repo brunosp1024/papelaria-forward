@@ -6,11 +6,11 @@ from apps.seller.models import Seller
 from apps.seller.tests.factories import SellerFactory
 
 
-LIST_URL = '/api/sellers/'
+LIST_URL = '/api/v1/sellers/'
 
 
 def DETAIL_URL(pk):
-    return f'/api/sellers/{pk}/'
+    return f'/api/v1/sellers/{pk}/'
 
 
 class TestSellerAuthentication:

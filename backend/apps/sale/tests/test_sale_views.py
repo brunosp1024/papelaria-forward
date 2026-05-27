@@ -9,11 +9,11 @@ from apps.sale.tests.factories import SaleFactory
 from apps.seller.tests.factories import SellerFactory
 
 
-LIST_URL = '/api/sales/'
+LIST_URL = '/api/v1/sales/'
 
 
 def DETAIL_URL(pk):
-    return f'/api/sales/{pk}/'
+    return f'/api/v1/sales/{pk}/'
 
 
 class TestSaleAuthentication:

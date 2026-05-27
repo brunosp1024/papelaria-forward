@@ -5,13 +5,13 @@ from apps.core.views import CookieTokenObtainPairView, CookieTokenRefreshView, L
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('apps.customer.urls')),
-    path('api/', include('apps.seller.urls')),
-    path('api/', include('apps.product.urls')),
-    path('api/', include('apps.sale.urls')),
+    path('api/v1/', include('apps.customer.urls')),
+    path('api/v1/', include('apps.seller.urls')),
+    path('api/v1/', include('apps.product.urls')),
+    path('api/v1/', include('apps.sale.urls')),
 
     # JWT endpoints
-    path('api/token/', CookieTokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', CookieTokenRefreshView.as_view(), name='token_refresh'),
-    path('api/logout/', LogoutView.as_view(), name='logout'),
+    path('api/v1/token/', CookieTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/v1/token/refresh/', CookieTokenRefreshView.as_view(), name='token_refresh'),
+    path('api/v1/logout/', LogoutView.as_view(), name='logout'),
 ]

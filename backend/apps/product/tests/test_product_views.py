@@ -6,11 +6,11 @@ from apps.product.models import Product
 from apps.product.tests.factories import ProductFactory
 
 
-LIST_URL = '/api/products/'
+LIST_URL = '/api/v1/products/'
 
 
 def DETAIL_URL(pk):
-    return f'/api/products/{pk}/'
+    return f'/api/v1/products/{pk}/'
 
 
 class TestProductAuthentication:

@@ -5,11 +5,11 @@ from apps.customer.models import Customer
 from apps.customer.tests.factories import CustomerFactory
 
 
-LIST_URL = '/api/customers/'
+LIST_URL = '/api/v1/customers/'
 
 
 def DETAIL_URL(pk):
-    return f'/api/customers/{pk}/'
+    return f'/api/v1/customers/{pk}/'
 
 class TestCustomerAuthentication:
 
