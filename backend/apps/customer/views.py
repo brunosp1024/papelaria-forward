@@ -2,6 +2,7 @@ from rest_framework.viewsets import ModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from apps.customer.filters import CustomerFilter
 from .models import Customer
@@ -14,7 +15,7 @@ class CustomerViewSet(ModelViewSet):
     permission_resource = 'customers'
     serializer_class = CustomerListSerializer
     permission_classes = [IsAuthenticated]
-    authentication_classes = [BasicAuthentication, SessionAuthentication]
+    authentication_classes = [JWTAuthentication, BasicAuthentication, SessionAuthentication]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     search_fields = ['name', 'email']
     ordering_fields = ['name', 'created_at']

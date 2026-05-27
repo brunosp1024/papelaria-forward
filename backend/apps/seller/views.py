@@ -3,6 +3,7 @@ from rest_framework.authentication import BasicAuthentication, SessionAuthentica
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from apps.seller.filters import SellerFilter
 
@@ -15,7 +16,7 @@ class SellerViewSet(ModelViewSet):
     permission_resource = 'sellers'
     serializer_class = SellerListSerializer
     permission_classes = [IsAuthenticated]
-    authentication_classes = [BasicAuthentication, SessionAuthentication]
+    authentication_classes = [JWTAuthentication, BasicAuthentication, SessionAuthentication]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     search_fields = ['name', 'email']
     ordering_fields = ['name', 'created_at']
