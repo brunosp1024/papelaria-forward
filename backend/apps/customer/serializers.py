@@ -5,13 +5,9 @@ from apps.customer.models import Customer
 
 class CustomerCreateUpdateSerializer(PersonSerializer):
     class Meta:
-        model  = Customer
-        fields = [
-            "id",
-            "name",
-            "email",
-            "phone"
-        ]
+        model = Customer
+        fields = ["id", "name", "email", "phone"]
+        read_only_fields = ["id"]
 
 class CustomerDetailSerializer(PersonSerializer):
 
@@ -23,7 +19,9 @@ class CustomerDetailSerializer(PersonSerializer):
             "email",
             "phone",
             "created_at",
-            "updated_at"
+            "updated_at",
+            "created_by",
+            "updated_by"
         ]
 
 class CustomerListSerializer(PersonSerializer):
@@ -36,5 +34,7 @@ class CustomerListSerializer(PersonSerializer):
             "email",
             "phone",
             "created_at",
-            "updated_at"
+            "updated_at",
+            "created_by",
+            "updated_by"
         ]
