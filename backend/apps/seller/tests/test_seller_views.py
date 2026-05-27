@@ -39,6 +39,9 @@ class TestSellerCRUD:
         SellerFactory()
         res = admin_client.get(LIST_URL)
         assert res.status_code == 200
+        assert "count" in res.data
+        assert "results" in res.data
+        assert len(res.data["results"]) == 1
 
     def test_partial_update_changes_field(self, admin_client):
         seller = SellerFactory(name='Old Name')
