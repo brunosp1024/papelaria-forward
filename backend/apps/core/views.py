@@ -1,11 +1,15 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.throttling import ScopedRateThrottle
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
 class CookieTokenRefreshView(TokenRefreshView):
     """ View to refresh JWT tokens using cookies. """
+
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = 'auth'
 
     def post(self, request, *args, **kwargs):
         if 'refresh' not in request.data:
@@ -30,6 +34,9 @@ class CookieTokenRefreshView(TokenRefreshView):
 
 class CookieTokenObtainPairView(TokenObtainPairView):
     """ View to obtain JWT tokens and set them in cookies. """
+
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = 'auth'
 
     def post(self, request, *args, **kwargs):
         print("Request received:", request.data)
@@ -56,6 +63,9 @@ class CookieTokenObtainPairView(TokenObtainPairView):
 
 class LogoutView(APIView):
     """ View to handle user logout by deleting JWT cookies. """
+
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = 'auth'
 
     def post(self, request):
         response = Response({'detail': 'Logout successful.'}, status=status.HTTP_200_OK)
