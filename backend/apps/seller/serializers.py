@@ -6,7 +6,7 @@ from apps.seller.models import Seller
 class SellerCreateUpdateSerializer(PersonSerializer):
     class Meta:
         model  = Seller
-        fields = ["id", "name", "email", "phone"]
+        fields = ["id", "name", "code", "email", "phone"]
         read_only_fields = ["id"]
 
 
@@ -17,6 +17,7 @@ class SellerDetailSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "name",
+            "code",
             "email",
             "phone",
             "created_at",
@@ -33,6 +34,7 @@ class SellerListSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "name",
+            "code",
             "email",
             "phone",
             "created_at",

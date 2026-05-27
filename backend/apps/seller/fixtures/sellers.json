@@ -8,6 +8,7 @@
       "created_by": 1,
       "updated_by": 1,
       "deleted_at": null,
+      "code": "S00001",
       "name": "Carlos Mendes",
       "email": "seller1@papelaria.com",
       "phone": "11988800000"
@@ -22,6 +23,7 @@
       "created_by": 1,
       "updated_by": 1,
       "deleted_at": null,
+      "code": "S00002",
       "name": "Ana Paula",
       "email": "seller2@papelaria.com",
       "phone": "11988800001"
@@ -36,6 +38,7 @@
       "created_by": 1,
       "updated_by": 1,
       "deleted_at": null,
+      "code": "S00003",
       "name": "Roberto Lima",
       "email": "seller3@papelaria.com",
       "phone": "11988800002"
@@ -50,6 +53,7 @@
       "created_by": 1,
       "updated_by": 1,
       "deleted_at": null,
+      "code": "S00004",
       "name": "Fernanda Costa",
       "email": "seller4@papelaria.com",
       "phone": "11988800003"
@@ -64,6 +68,7 @@
       "created_by": 1,
       "updated_by": 1,
       "deleted_at": null,
+      "code": "S00005",
       "name": "Lucas Alves",
       "email": "seller5@papelaria.com",
       "phone": "11988800004"

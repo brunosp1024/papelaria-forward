@@ -3,9 +3,9 @@ from .models import Seller
 
 
 class SellerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'phone', 'email')
-    list_display_links = ('name', 'phone')
-    search_fields = ('name', 'phone')
+    list_display = ('name', 'code', 'phone', 'email')
+    list_display_links = ('name', 'code')
+    search_fields = ('name', 'code', 'phone', 'email')
     list_per_page = 20
 
 admin.site.register(Seller, SellerAdmin)

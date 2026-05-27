@@ -23,7 +23,7 @@ class TestSellerAuthentication:
 class TestSellerCRUD:
 
     def test_create_sets_default_not_deleted(self, admin_client):
-        data = {'name': 'New Seller', 'email': 'new-seller@example.com'}
+        data = {'code': 'S00001', 'name': 'New Seller', 'email': 'new-seller@example.com'}
         res = admin_client.post(LIST_URL, data, format='json')
         assert res.status_code == 201
         assert Seller.objects.get(pk=res.data['id']).deleted_at is None
@@ -32,7 +32,7 @@ class TestSellerCRUD:
         seller = SellerFactory()
         res = admin_client.get(DETAIL_URL(seller.pk))
         assert res.status_code == 200
-        for field in ['id', 'name', 'created_at', 'updated_at']:
+        for field in ['id', 'code', 'name', 'created_at', 'updated_at']:
             assert field in res.data
 
     def test_list_uses_list_serializer(self, admin_client):
@@ -55,8 +55,13 @@ class TestSellerCRUD:
         assert seller.name == 'New Name'
 
     def test_update_changes_multiple_fields(self, admin_client):
-        seller = SellerFactory(name='Old Name', email='old@example.com')
-        payload = {'name': 'New Name', 'email': 'new@example.com', 'phone': '11999990000'}
+        seller = SellerFactory(code='S00010', name='Old Name', email='old@example.com')
+        payload = {
+            'code': 'S00010',
+            'name': 'New Name',
+            'email': 'new@example.com',
+            'phone': '11999990000',
+        }
         res = admin_client.put(
             DETAIL_URL(seller.pk),
             json.dumps(payload),
@@ -82,13 +87,13 @@ class TestSellerCRUD:
         assert res.status_code == 404
 
     def test_create_missing_name_returns_400(self, admin_client):
-        res = admin_client.post(LIST_URL, {'email': 'test@example.com'})
+        res = admin_client.post(LIST_URL, {'code': 'S00002', 'email': 'test@example.com'})
         assert res.status_code == 400
         assert 'name' in res.data
 
     def test_create_duplicate_email_returns_400(self, admin_client):
         SellerFactory(email='duplicate@example.com')
-        res = admin_client.post(LIST_URL, {'name': 'New Seller', 'email': 'duplicate@example.com'})
+        res = admin_client.post(LIST_URL, {'code': 'S00003', 'name': 'New Seller', 'email': 'duplicate@example.com'})
         assert res.status_code == 400
         assert 'email' in res.data
 
