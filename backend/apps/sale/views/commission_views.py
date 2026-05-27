@@ -1,40 +1,46 @@
+from datetime import datetime, timedelta
+from django.db.models import Count, Sum, Q, Value, DecimalField, F, ExpressionWrapper
+from django.db.models.functions import Coalesce
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.response import Response
-from rest_framework.decorators import action
-from rest_framework.exceptions import ValidationError
 
-from apps.sale.serializers.commission_serializers import CommissionConfigSerializer, SellerCommissionSummarySerializer
+from apps.sale.serializers.commission_serializers import CommissionConfigSerializer
 from apps.sale.models.commission_config import CommissionConfig
-from apps.sale.services.commission_summary import get_commission_summary
-from utils.date_parsers import parse_date_param
+from apps.seller.models import Seller
 
 
 class CommissionConfigViewSet(ModelViewSet):
     queryset = CommissionConfig.objects.all().order_by("day_of_week")
     serializer_class = CommissionConfigSerializer
 
-    def create(self, request, *args, **kwargs):
-        day = request.data.get("day_of_week")
-        instance = CommissionConfig.objects.filter(day_of_week=day).first()
+    def get_queryset(self):
+        queryset = Seller.objects.all()
+        start_date = self.request.GET.get('start_date')
+        end_date = self.request.GET.get('end_date')
+        sales_filter = Q()
 
-        if instance:
-            serializer = self.get_serializer(instance, data=request.data)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            return Response(serializer.data)
+        if start_date and end_date:
+            start_date = datetime.strptime(start_date, '%Y-%m-%d')
+            end_date = datetime.strptime(end_date, '%Y-%m-%d') + timedelta(days=1)
+            sales_filter = Q(sales__datetime__gte=start_date, sales__datetime__lt=end_date)
 
-        return super().create(request, *args, **kwargs)
-    
-    @action(detail=False, methods=['get'], url_path='commission-summary')
-    def commission_summary(self, request):
-        start_date = parse_date_param(request.query_params.get('start_date'), 'start_date')
-        end_date = parse_date_param(request.query_params.get('end_date'), 'end_date')
-
-        if start_date > end_date:
-            raise ValidationError({'end_date': 'A data final deve ser maior ou igual à data inicial.'})
-
-        serializer = SellerCommissionSummarySerializer(
-            get_commission_summary(start_date, end_date),
-            many=True,
+        commission_expr = ExpressionWrapper(
+            F('sales__items__quantity')
+            * F('sales__items__product__unit_value')
+            * F('sales__items__product__commission_percentage')
+            / Value(100),
+            output_field=DecimalField(max_digits=10, decimal_places=2)
         )
-        return Response(serializer.data)
+
+        queryset = queryset.annotate(
+            sales_count=Count('sales', filter=sales_filter, distinct=True),
+            commission_total=Coalesce(
+                Sum(commission_expr, filter=sales_filter),
+                Value(0),
+                output_field=DecimalField(max_digits=10, decimal_places=2)
+            )
+        ).order_by('code')
+
+        if start_date and end_date:
+            queryset = queryset.filter(sales_count__gt=0)
+
+        return queryset

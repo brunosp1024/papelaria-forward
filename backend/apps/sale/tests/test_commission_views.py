@@ -2,81 +2,80 @@ from datetime import datetime, timezone
 from decimal import Decimal
 
 import pytest
+from rest_framework.test import APIRequestFactory
 
 from apps.customer.tests.factories import CustomerFactory
 from apps.product.tests.factories import ProductFactory
-from apps.sale.models.commission_config import CommissionConfig
 from apps.sale.models.sale_item import SaleItem
 from apps.sale.tests.factories import SaleFactory
+from apps.sale.views.commission_views import CommissionConfigViewSet
 from apps.seller.tests.factories import SellerFactory
 
 
-SUMMARY_URL = '/api/v1/commission-configs/commission-summary/'
+def build_view(params=None):
+    factory = APIRequestFactory()
+    request = factory.get('/api/v1/commissions/', data=params or {})
+    view = CommissionConfigViewSet()
+    view.request = request
+    return view
 
 
 @pytest.mark.django_db
-class TestCommissionSummaryAction:
+class TestCommissionConfigGetQueryset:
 
-    def test_requires_start_date(self, admin_client):
-        res = admin_client.get(SUMMARY_URL)
-
-        assert res.status_code == 400
-        assert 'start_date' in res.data
-
-    def test_requires_end_date(self, admin_client):
-        res = admin_client.get(SUMMARY_URL, {'start_date': '2026-05-01'})
-
-        assert res.status_code == 400
-        assert 'end_date' in res.data
-
-    def test_requires_end_date_after_start_date(self, admin_client):
-        res = admin_client.get(
-            SUMMARY_URL,
-            {'start_date': '2026-05-20', 'end_date': '2026-05-01'},
-        )
-
-        assert res.status_code == 400
-        assert 'end_date' in res.data
-
-    def test_returns_summary_grouped_by_seller(self, admin_client):
-        sale_date = datetime(2026, 5, 20, 12, 0, tzinfo=timezone.utc)  # Wednesday
-
-        CommissionConfig.objects.create(
-            day_of_week=2,
-            min_percentage=Decimal('3.00'),
-            max_percentage=Decimal('6.00'),
-        )
-
-        seller_a = SellerFactory(name='Alice Seller')
-        seller_b = SellerFactory(name='Bruno Seller')
+    def test_get_queryset_returns_all_sellers_with_annotations_without_period(self):
         customer = CustomerFactory()
+        seller_a = SellerFactory(code='S00001', name='Alice Seller')
+        seller_b = SellerFactory(code='S00002', name='Bruno Seller')
 
-        sale_a = SaleFactory(
+        sale = SaleFactory(
             seller=seller_a,
             customer=customer,
-            datetime=sale_date,
-            invoice_number='INV-VIEW-001',
+            datetime=datetime(2026, 5, 20, 12, 0, tzinfo=timezone.utc),
+            invoice_number='INV-QS-001',
         )
-        product_a = ProductFactory(unit_value=Decimal('100.00'), commission_percentage=Decimal('10.00'))
-        SaleItem.objects.create(sale=sale_a, product=product_a, quantity=1)
+        product = ProductFactory(unit_value=Decimal('100.00'), commission_percentage=Decimal('10.00'))
+        SaleItem.objects.create(sale=sale, product=product, quantity=2)
 
-        sale_b = SaleFactory(
-            seller=seller_b,
+        sellers = list(build_view().get_queryset())
+
+        assert [seller.code for seller in sellers] == ['S00001', 'S00002']
+
+        seller_a_row = next(item for item in sellers if item.pk == seller_a.pk)
+        seller_b_row = next(item for item in sellers if item.pk == seller_b.pk)
+
+        assert seller_a_row.sales_count == 1
+        assert seller_a_row.commission_total == Decimal('20.00')
+        assert seller_b_row.sales_count == 0
+        assert seller_b_row.commission_total == Decimal('0.00')
+
+    def test_get_queryset_filters_to_sellers_with_sales_in_period(self):
+        customer = CustomerFactory()
+        seller_in_period = SellerFactory(code='S00003', name='In Period')
+        seller_outside_period = SellerFactory(code='S00004', name='Outside Period')
+
+        sale_in_period = SaleFactory(
+            seller=seller_in_period,
             customer=customer,
-            datetime=sale_date,
-            invoice_number='INV-VIEW-002',
+            datetime=datetime(2026, 5, 20, 12, 0, tzinfo=timezone.utc),
+            invoice_number='INV-QS-002',
         )
-        product_b = ProductFactory(unit_value=Decimal('100.00'), commission_percentage=Decimal('4.00'))
-        SaleItem.objects.create(sale=sale_b, product=product_b, quantity=1)
+        product_in_period = ProductFactory(unit_value=Decimal('50.00'), commission_percentage=Decimal('4.00'))
+        SaleItem.objects.create(sale=sale_in_period, product=product_in_period, quantity=1)
 
-        res = admin_client.get(
-            SUMMARY_URL,
-            {'start_date': '2026-05-01', 'end_date': '2026-05-31'},
+        sale_outside_period = SaleFactory(
+            seller=seller_outside_period,
+            customer=customer,
+            datetime=datetime(2026, 6, 5, 12, 0, tzinfo=timezone.utc),
+            invoice_number='INV-QS-003',
+        )
+        product_outside_period = ProductFactory(unit_value=Decimal('80.00'), commission_percentage=Decimal('5.00'))
+        SaleItem.objects.create(sale=sale_outside_period, product=product_outside_period, quantity=1)
+
+        sellers = list(
+            build_view({'start_date': '2026-05-01', 'end_date': '2026-05-31'}).get_queryset()
         )
 
-        assert res.status_code == 200
-        assert len(res.data) == 2
-
-        by_seller_id = {item['seller']['id']: item for item in res.data}
-        assert by_seller_id[str(seller_a.pk)]['total_commission'] == '6.00'
-        assert by_seller_id[str(seller_b.pk)]['total_commission'] == '4.00'
+        assert [seller.pk for seller in sellers] == [seller_in_period.pk]
+        assert sellers[0].sales_count == 1
+        assert sellers[0].commission_total == Decimal('2.00')

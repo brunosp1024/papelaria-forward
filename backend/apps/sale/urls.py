@@ -11,6 +11,6 @@ class OptionalSlashRouter(DefaultRouter):
 
 router = OptionalSlashRouter()
 router.register(r'sales', SaleViewSet)
-router.register(r'commission-configs', CommissionConfigViewSet)
+router.register(r'commissions', CommissionConfigViewSet)
 
 urlpatterns = router.urls
