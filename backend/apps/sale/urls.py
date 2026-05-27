@@ -1,6 +1,6 @@
 from rest_framework.routers import DefaultRouter
 
-from .views import SaleViewSet
+from .views import CommissionConfigViewSet, SaleViewSet
 
 
 class OptionalSlashRouter(DefaultRouter):
@@ -11,5 +11,6 @@ class OptionalSlashRouter(DefaultRouter):
 
 router = OptionalSlashRouter()
 router.register(r'sales', SaleViewSet)
+router.register(r'commission-configs', CommissionConfigViewSet)
 
 urlpatterns = router.urls
