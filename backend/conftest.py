@@ -1,6 +1,6 @@
 import pytest
+from django.contrib.auth import get_user_model
 
-from types import SimpleNamespace
 from rest_framework.test import APIClient
 
 
@@ -9,15 +9,18 @@ def api_client():
     return APIClient()
 
 
-@pytest.fixture
-def admin_user():
-    return SimpleNamespace(
-        is_authenticated=True,
-        is_active=True,
-        is_staff=True,
-        pk=1,
-        username="admin",
-    )
+@pytest.fixture(scope="session")
+def admin_user(django_db_setup, django_db_blocker):
+    user_model = get_user_model()
+    with django_db_blocker.unblock():
+        user, _ = user_model.objects.get_or_create(
+            username="admin",
+            defaults={
+                "is_staff": True,
+                "is_active": True,
+            },
+        )
+    return user
 
 
 @pytest.fixture

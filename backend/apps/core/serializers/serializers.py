@@ -1,8 +1,9 @@
 from rest_framework import serializers
+from apps.core.serializers.audit_serializer_mixin import AuditSerializerMixin
 from utils.validators import validate_phone as validate_phone_util
 
 
-class PersonSerializer(serializers.ModelSerializer):
+class PersonSerializer(AuditSerializerMixin):
 
     def validate_phone(self, value):
         if not value:
