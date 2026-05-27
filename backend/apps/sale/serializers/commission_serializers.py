@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from apps.sale.models.commission_config import CommissionConfig
+from apps.seller.serializers import SellerListSerializer
 
 
 class CommissionConfigSerializer(serializers.ModelSerializer):
@@ -33,3 +34,12 @@ class CommissionConfigSerializer(serializers.ModelSerializer):
                 "O percentual mínimo não pode ser maior que o máximo."
             )
         return data
+
+
+class SellerCommissionSummarySerializer(serializers.Serializer):
+    seller = SellerListSerializer(read_only=True)
+    total_commission = serializers.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        read_only=True,
+    )
