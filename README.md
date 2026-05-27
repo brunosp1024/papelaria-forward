@@ -34,6 +34,7 @@ Também é possível consultar a lista de comissões por vendedor, com base nas 
 
 - Python 3.12 ou superior
 - uv instalado
+- Docker e Docker Compose (Opcional)
 
 Instalação do uv (Linux/macOS):
 
@@ -80,11 +81,35 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+- com Docker:
+```bash
+docker compose up --build
+```
+
 Aplicação disponível em: `http://127.0.0.1:8000/`
 
 ## Rotas Disponíveis
 
 - Admin Django: `http://127.0.0.1:8000/admin/`
+
+## Popular banco com fixtures
+
+O projeto possui um comando de setup que limpa o banco e carrega os dados iniciais de fixtures.
+
+Ambiente local:
+
+```bash
+cd backend
+python manage.py setup --yes
+```
+
+Com Docker:
+
+```bash
+docker compose exec api python manage.py setup --yes
+```
+
+> Atenção: esse comando executa `flush` e apaga todos os dados atuais antes de popular novamente.
 
 ## Comandos Úteis
 
@@ -96,6 +121,7 @@ pytest
 ```
 
 O projeto usa `backend/config/settings.py` para os ambientes normais e `backend/config/settings_test.py` para testes.
+
 
 ## Gerenciamento de Dependências com uv
 
@@ -130,7 +156,7 @@ Exemplo em `backend/.env.example`:
 - `SECRET_KEY`: chave secreta do Django.
 - `DEBUG`: `True` para desenvolvimento local.
 - `ALLOWED_HOSTS`: hosts permitidos separados por vírgula.
-- `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_HOST` e `DB_PORT`: configuram o PostgreSQL do ambiente local.
+- `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD`, `DB_HOST` e `DB_PORT`: configuram o PostgreSQL do ambiente local e do Docker.
 - `backend/config/settings_test.py` isola a configuração de testes.
 
 ## Observações
