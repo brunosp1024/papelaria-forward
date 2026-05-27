@@ -43,7 +43,10 @@ class TestProductDetailSerializer:
 
     def test_contains_expected_fields(self):
         s = ProductDetailSerializer(ProductFactory.build())
-        for field in ['id', 'code', 'description', 'unit_value', 'commission_percentage', 'created_at', 'updated_at']:
+        for field in [
+            'id', 'code', 'description', 'unit_value', 'commission_percentage',
+            'created_at', 'updated_at', "created_by", "updated_by"
+        ]:
             assert field in s.data
 
 
@@ -51,5 +54,8 @@ class TestProductListSerializer:
 
     def test_contains_expected_fields(self):
         s = ProductListSerializer(ProductFactory.build())
-        for field in ['id', 'code', 'description', 'unit_value', 'commission_percentage', 'created_at', 'updated_at']:
+        for field in [
+            'id', 'code', 'description', 'unit_value', 'commission_percentage',
+            'created_at', 'updated_at', "created_by", "updated_by"
+        ]:
             assert field in s.data
