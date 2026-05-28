@@ -1,7 +1,10 @@
+import { ToastProvider } from "./components/UI/ToastContext";
+import "./components/UI/ToastContext.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import SalesList from "./pages/Sales/SalesList";
+import SalesForm from "./pages/Sales/SalesForm";
 import DashboardLayout from "./pages/Dashboard/Dashboard";
 import Login from "./pages/Login/Login";
 import { BaseLayout } from "./components/layout/BaseLayout";
@@ -30,6 +33,8 @@ function AppContent() {
         <Route element={<BaseLayout />}>
           <Route path="/" element={<DashboardLayout />} />
           <Route path="/vendas" element={<SalesList />} />
+          <Route path="/vendas/nova" element={<SalesForm />} />
+          <Route path="/vendas/:id" element={<SalesForm />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
@@ -41,7 +46,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <AppContent />
+        <ToastProvider>
+          <AppContent />
+        </ToastProvider>
       </AuthProvider>
     </QueryClientProvider>
   );
