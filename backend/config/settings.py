@@ -45,7 +45,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "config.urls"
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+    if origin.strip()
+]
 
 TEMPLATES = [
     {
