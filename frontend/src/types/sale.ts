@@ -15,7 +15,6 @@ export interface Sale extends AuditFields {
 }
 
 export interface SaleInput {
-  invoice_number: string;
   datetime: ISODateString;
   customer: UUID;
   seller: UUID;
