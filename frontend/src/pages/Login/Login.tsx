@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import "./Login.css";
 
-export function Login() {
+export default function Login() {
   const { login } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
