@@ -15,7 +15,7 @@
 }
 
 .sales-list__add-button {
-  @apply rounded-lg bg-brand-700 px-4 py-2 text-sm font-semibold text-white opacity-60;
+  @apply rounded-lg bg-brand-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-900;
 }
 
 .sales-list__table-wrapper {
