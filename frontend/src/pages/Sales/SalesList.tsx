@@ -1,9 +1,9 @@
 import { Fragment, useState } from "react";
 import { useDeleteSale, useSales } from "../../hooks";
 import { Sale } from "../../types";
-import { SaleItemsList } from "../../components/sales/SaleItems/SaleItemsList";
 import "./SalesList.css";
 import { formatCurrency } from "../../utils/formatCurrency";
+import { SaleItemsList } from "./components/SaleItemsList";
 
 
 function formatDateTime(value: string) {
