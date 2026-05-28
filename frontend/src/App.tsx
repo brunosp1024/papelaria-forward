@@ -9,19 +9,19 @@ const queryClient = new QueryClient();
 function AppContent() {
   const { isCheckingSession, isAuthenticated } = useAuth();
 
-  return (
-    <>
-      {isCheckingSession ? (
-        <main className="flex min-h-screen items-center justify-center bg-slate-50">
-          <p className="text-sm font-semibold text-slate-500">Verificando sessao...</p>
-        </main>
-      ) : isAuthenticated ? (
-        <DashboardLayout />
-      ) : (
-        <Login />
-      )}
-    </>
-  );
+  if (isCheckingSession) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-slate-50">
+        <p className="text-sm font-semibold text-slate-500">Verificando sessao...</p>
+      </main>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <Login />;
+  }
+
+  return <DashboardLayout />;
 }
 
 function App() {

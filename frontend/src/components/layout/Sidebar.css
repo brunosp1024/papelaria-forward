@@ -1,0 +1,71 @@
+.sidebar {
+  @apply sticky top-0 flex h-screen w-80 flex-col border-r border-slate-200 bg-slate-50 px-4 py-4 shadow-sm transition-all duration-300;
+}
+
+.sidebar--collapsed {
+  @apply w-20 px-2;
+}
+
+.sidebar__header {
+  @apply mb-5 flex items-center justify-between;
+}
+
+.sidebar__title {
+  @apply text-xs font-extrabold uppercase tracking-[0.24em] text-slate-400;
+}
+
+.sidebar__nav {
+  @apply flex h-full flex-col gap-2;
+}
+
+.sidebar__link {
+  @apply flex items-center justify-between rounded-xl bg-white px-3 py-3 text-left text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-100 hover:text-brand-900;
+}
+
+.sidebar__link--logout {
+  @apply mt-auto;
+}
+
+.sidebar__link-content {
+  @apply flex items-center gap-3;
+}
+
+.sidebar__label {
+  @apply whitespace-nowrap;
+}
+
+.sidebar__icon {
+  @apply inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand-50 text-brand-700;
+}
+
+.sidebar__icon-svg {
+  @apply h-4 w-4;
+}
+
+.sidebar__arrow {
+  @apply text-slate-300;
+}
+
+.sidebar__arrow-svg {
+  @apply h-5 w-5;
+}
+
+.sidebar__link--button {
+  @apply border-0;
+}
+
+.sidebar--collapsed .sidebar__title {
+  @apply opacity-0;
+}
+
+.sidebar--collapsed .sidebar__label {
+  @apply hidden;
+}
+
+.sidebar--collapsed .sidebar__arrow {
+  @apply hidden;
+}
+
+.sidebar--collapsed .sidebar__link {
+  @apply justify-center px-2;
+}
