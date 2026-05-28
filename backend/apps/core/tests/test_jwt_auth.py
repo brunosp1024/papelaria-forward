@@ -23,6 +23,8 @@ class TestJWTAuthentication:
         assert res.data["detail"] == "Login successful."
         assert "access" in res.cookies
         assert "refresh" in res.cookies
+        assert res.cookies["access"]["path"] == "/"
+        assert res.cookies["refresh"]["path"] == "/"
 
     def test_access_protected_endpoint_with_bearer_token(self, django_user_model):
         django_user_model.objects.create_user(username="jwt-user-2", password="jwt-pass-2")
@@ -77,6 +79,7 @@ class TestJWTAuthentication:
         assert refresh_res.status_code == 200
         assert refresh_res.data["detail"] == "Token updated successfully."
         assert "access" in refresh_res.cookies
+        assert refresh_res.cookies["access"]["path"] == "/"
 
     def test_refresh_accepts_cookie_without_refresh_in_body(self, django_user_model):
         django_user_model.objects.create_user(username="jwt-user-cookie", password="jwt-pass-cookie")
@@ -144,3 +147,5 @@ class TestJWTAuthentication:
         assert logout_res.data["detail"] == "Logout successful."
         assert logout_res.cookies["access"].value == ""
         assert logout_res.cookies["refresh"].value == ""
+        assert logout_res.cookies["access"]["path"] == "/"
+        assert logout_res.cookies["refresh"]["path"] == "/"

@@ -18,6 +18,20 @@ const api = axios.create({
   withCredentials: true,
 });
 
+let refreshTokenRequest: Promise<void> | null = null;
+
+async function refreshToken() {
+  if (!refreshTokenRequest) {
+    refreshTokenRequest = api.post("/token/refresh/", {}).then(() => undefined);
+  }
+
+  try {
+    await refreshTokenRequest;
+  } finally {
+    refreshTokenRequest = null;
+  }
+}
+
 api.interceptors.response.use(
   (response) => response,
   async (error: AxiosError<ApiErrorPayload>) => {
@@ -32,7 +46,7 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        await api.post("/token/refresh/", {});
+        await refreshToken();
         return api(originalRequest);
       } catch {
         // Falls through to normalized error message below.

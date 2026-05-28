@@ -60,6 +60,7 @@ class CookieTokenObtainPairView(TokenObtainPairView):
                 httponly=True,
                 samesite='Lax',
                 max_age=60*60,  # 1 hour
+                path='/',
             )
             response.set_cookie(
                 key='refresh',
@@ -67,6 +68,7 @@ class CookieTokenObtainPairView(TokenObtainPairView):
                 httponly=True,
                 samesite='Lax',
                 max_age=60*60*24*3,  # 3 days
+                path='/',
             )
             response.data = {'detail': 'Login successful.'}
         return response
