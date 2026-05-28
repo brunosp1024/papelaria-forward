@@ -15,11 +15,13 @@ class CookieTokenRefreshView(TokenRefreshView):
         if 'refresh' not in request.data:
             refresh_cookie = request.COOKIES.get('refresh')
             if refresh_cookie:
-                request.data._mutable = True
-                request.data['refresh'] = refresh_cookie
+                payload = request.data.copy() if hasattr(request.data, 'copy') else dict(request.data)
+                payload['refresh'] = refresh_cookie
+                request._full_data = payload
         response = super().post(request, *args, **kwargs)
         if response.status_code == status.HTTP_200_OK:
             access = response.data.get('access')
+            refresh = response.data.get('refresh')
             # Update the access cookie
             response.set_cookie(
                 key='access',
@@ -29,6 +31,15 @@ class CookieTokenRefreshView(TokenRefreshView):
                 max_age=60*60,  # 1 hour
                 path='/'
             )
+            if refresh:
+                response.set_cookie(
+                    key='refresh',
+                    value=refresh,
+                    httponly=True,
+                    samesite='Lax',
+                    max_age=60*60*24*3,  # 3 days
+                    path='/'
+                )
             response.data = {'detail': 'Token updated successfully.'}
         return response
 
@@ -39,7 +50,6 @@ class CookieTokenObtainPairView(TokenObtainPairView):
     throttle_scope = 'auth'
 
     def post(self, request, *args, **kwargs):
-        print("Request received:", request.data)
         response = super().post(request, *args, **kwargs)
         if response.status_code == status.HTTP_200_OK:
             access = response.data.get('access')
@@ -56,7 +66,7 @@ class CookieTokenObtainPairView(TokenObtainPairView):
                 value=refresh,
                 httponly=True,
                 samesite='Lax',
-                max_age=60*60*24,  # 1 day
+                max_age=60*60*24*3,  # 3 days
             )
             response.data = {'detail': 'Login successful.'}
         return response
