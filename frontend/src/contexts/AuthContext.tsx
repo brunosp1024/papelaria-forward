@@ -1,7 +1,30 @@
-import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { authApi, LoginPayload } from "../api/auth";
+
+const AUTH_SESSION_KEY = "pf_has_session";
+
+function hasSessionHint() {
+  try {
+    return window.localStorage.getItem(AUTH_SESSION_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function updateSessionHint(hasSession: boolean) {
+  try {
+    if (hasSession) {
+      window.localStorage.setItem(AUTH_SESSION_KEY, "1");
+      return;
+    }
+
+    window.localStorage.removeItem(AUTH_SESSION_KEY);
+  } catch {
+    // Ignore storage access failures.
+  }
+}
 
 type AuthContextValue = {
   isCheckingSession: boolean;
@@ -18,10 +41,14 @@ type AuthProviderProps = {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const queryClient = useQueryClient();
-  const [isCheckingSession, setIsCheckingSession] = useState(true);
+  const [isCheckingSession, setIsCheckingSession] = useState(hasSessionHint);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
+    if (!isCheckingSession) {
+      return;
+    }
+
     const controller = new AbortController();
 
     async function checkSession() {
@@ -30,6 +57,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setIsAuthenticated(true);
       } catch {
         if (!controller.signal.aborted) {
+          updateSessionHint(false);
           setIsAuthenticated(false);
         }
       } finally {
@@ -44,28 +72,29 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return () => {
       controller.abort();
     };
-  }, []);
+  }, [isCheckingSession]);
 
-  const login = useCallback(async (credentials: LoginPayload) => {
+  async function login(credentials: LoginPayload) {
     await authApi.login(credentials);
+    updateSessionHint(true);
     setIsAuthenticated(true);
-  }, []);
+  }
 
-  const logout = useCallback(async () => {
+  async function logout() {
     try {
       await authApi.logout();
     } finally {
+      updateSessionHint(false);
       queryClient.clear();
       setIsAuthenticated(false);
     }
-  }, [queryClient]);
+  }
 
-  const value = useMemo(
-    () => ({ isCheckingSession, isAuthenticated, login, logout }),
-    [isCheckingSession, isAuthenticated, login, logout]
+  return (
+    <AuthContext.Provider value={{ isCheckingSession, isAuthenticated, login, logout }}>
+      {children}
+    </AuthContext.Provider>
   );
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {

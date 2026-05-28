@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { DashboardLayout } from "./components/layout/Dashboard";
+import { Login } from "./components/auth/Login";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
+
+const queryClient = new QueryClient();
+
+function AppContent() {
+  const { isCheckingSession, isAuthenticated } = useAuth();
+
+  return (
+    <>
+      {isCheckingSession ? (
+        <main className="flex min-h-screen items-center justify-center bg-slate-50">
+          <p className="text-sm font-semibold text-slate-500">Verificando sessao...</p>
+        </main>
+      ) : isAuthenticated ? (
+        <DashboardLayout />
+      ) : (
+        <Login />
+      )}
+    </>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
 

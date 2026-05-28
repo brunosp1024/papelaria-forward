@@ -1,17 +1,48 @@
-import axios from "axios";
+import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 
+
+const baseURL = process.env.REACT_APP_API_URL || "http://localhost:8000/api/v1";
+
+type RetryableRequestConfig = InternalAxiosRequestConfig & {
+  _retry?: boolean;
+};
+
+type ApiErrorPayload = {
+  detail?: string;
+  error?: string;
+};
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "http://localhost:8000/api/v1",
+  baseURL,
   headers: { "Content-Type": "application/json" },
+  withCredentials: true,
 });
 
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error: AxiosError<ApiErrorPayload>) => {
+    const originalRequest = error.config as RetryableRequestConfig | undefined;
+    const status = error.response?.status;
+    const requestUrl = originalRequest?.url || "";
+    const shouldSkipRefresh =
+      requestUrl.includes("/token/") ||
+      requestUrl.includes("/token/refresh/");
+
+    if (status === 401 && originalRequest && !originalRequest._retry && !shouldSkipRefresh) {
+      originalRequest._retry = true;
+
+      try {
+        await api.post("/token/refresh/", {});
+        return api(originalRequest);
+      } catch {
+        // Falls through to normalized error message below.
+      }
+    }
+
     const message =
       error.response?.data?.detail ||
       error.response?.data?.error ||
+      (error.message === "Network Error" ? "Nao foi possivel conectar ao servidor." : undefined) ||
       "Ocorreu um erro inesperado.";
     return Promise.reject(new Error(message));
   }
