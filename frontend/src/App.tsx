@@ -1,7 +1,10 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import { DashboardLayout } from "./components/layout/Dashboard";
-import { Login } from "./components/auth/Login";
+import SalesList from "./pages/Sales/SalesList";
+import DashboardLayout from "./pages/Dashboard/Dashboard";
+import Login from "./pages/Login/Login";
+import { BaseLayout } from "./components/layout/BaseLayout";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 
 const queryClient = new QueryClient();
@@ -21,7 +24,17 @@ function AppContent() {
     return <Login />;
   }
 
-  return <DashboardLayout />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<BaseLayout />}>
+          <Route path="/" element={<DashboardLayout />} />
+          <Route path="/vendas" element={<SalesList />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 function App() {
