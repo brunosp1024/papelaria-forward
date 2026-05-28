@@ -1,0 +1,39 @@
+.dashboard-root {
+  @apply mx-auto max-w-6xl px-4 py-8;
+}
+
+.dashboard-header {
+  @apply mb-4 flex items-start justify-between gap-4;
+}
+
+.dashboard-title {
+  @apply m-0 text-3xl font-extrabold tracking-tight text-brand-900;
+}
+
+.dashboard-subtitle {
+  @apply mb-6 mt-2 text-sm font-medium text-slate-600;
+}
+
+.dashboard-grid {
+  @apply grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.dashboard-logout {
+  @apply rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:text-slate-900;
+}
+
+.resource-card {
+  @apply rounded-xl border border-slate-200 bg-white p-4 shadow-sm;
+}
+
+.resource-card-title {
+  @apply m-0 mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500;
+}
+
+.resource-card-value {
+  @apply m-0 text-3xl font-black text-brand-700;
+}
+
+.resource-card-error {
+  @apply mt-2 text-sm font-semibold text-rose-700;
+}
