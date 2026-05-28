@@ -1,5 +1,13 @@
-.dashboard-root {
-  @apply mx-auto max-w-6xl px-4 py-8;
+.dashboard-shell {
+  @apply flex min-h-screen bg-slate-100;
+}
+
+.dashboard-content {
+  @apply min-w-0 flex-1;
+}
+
+.dashboard-body {
+  @apply px-6 py-8;
 }
 
 .dashboard-header {
@@ -16,10 +24,6 @@
 
 .dashboard-grid {
   @apply grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3;
-}
-
-.dashboard-logout {
-  @apply rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:text-slate-900;
 }
 
 .resource-card {
