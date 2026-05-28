@@ -22,6 +22,10 @@
   @apply flex items-center justify-between rounded-xl bg-white px-3 py-3 text-left text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-100 hover:text-brand-900;
 }
 
+.sidebar__link--active {
+  @apply bg-brand-50 text-brand-900 ring-1 ring-brand-100;
+}
+
 .sidebar__link--logout {
   @apply mt-auto;
 }
@@ -51,7 +55,7 @@
 }
 
 .sidebar__link--button {
-  @apply border-0;
+  @apply w-full border-0;
 }
 
 .sidebar--collapsed .sidebar__title {

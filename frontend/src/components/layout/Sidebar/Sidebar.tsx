@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom";
+
 import "./Sidebar.css";
 
 type SidebarProps = {
   collapsed: boolean;
+  currentPath: string;
   onLogout?: () => Promise<void>;
 };
 
-export function Sidebar({ collapsed, onLogout }: SidebarProps) {
+export function Sidebar({ collapsed, currentPath, onLogout }: SidebarProps) {
   async function handleLogout() {
     if (!onLogout) {
       return;
@@ -18,7 +21,11 @@ export function Sidebar({ collapsed, onLogout }: SidebarProps) {
     <aside className={`sidebar ${collapsed ? "sidebar--collapsed" : ""}`}>
 
       <nav className="sidebar__nav" aria-label="Navegacao principal">
-        <a className="sidebar__link" href="#dashboard-cards" title="Vendas">
+        <Link
+          className={`sidebar__link ${currentPath === "/vendas" ? "sidebar__link--active" : ""}`}
+          to="/vendas"
+          title="Vendas"
+        >
           <span className="sidebar__link-content">
             <span className="sidebar__icon" aria-hidden="true">
               <svg className="sidebar__icon-svg" viewBox="0 0 24 24" fill="none">
@@ -34,9 +41,13 @@ export function Sidebar({ collapsed, onLogout }: SidebarProps) {
               <path d="M7 4L13 10L7 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
             </svg>
           </span>
-        </a>
+        </Link>
 
-        <a className="sidebar__link" href="#dashboard-summary" title="Comissoes">
+        <Link
+          className={`sidebar__link ${currentPath === "/" ? "sidebar__link--active" : ""}`}
+          to="/"
+          title="Resumo"
+        >
           <span className="sidebar__link-content">
             <span className="sidebar__icon" aria-hidden="true">
               <svg className="sidebar__icon-svg" viewBox="0 0 24 24" fill="none">
@@ -55,7 +66,7 @@ export function Sidebar({ collapsed, onLogout }: SidebarProps) {
               <path d="M7 4L13 10L7 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
             </svg>
           </span>
-        </a>
+        </Link>
 
         <button className="sidebar__link sidebar__link--button sidebar__link--logout" type="button" onClick={handleLogout} title="Sair">
           <span className="sidebar__link-content">
