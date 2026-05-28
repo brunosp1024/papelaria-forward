@@ -28,7 +28,7 @@ class SaleWriteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Sale
-        fields = ["id", "invoice_number", "datetime", "customer", "seller", "items"]
+        fields = ["id", "datetime", "customer", "seller", "items"]
 
     def validate_items(self, value):
         if not value:

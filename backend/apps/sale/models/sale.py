@@ -3,6 +3,7 @@ from django.db import models
 from apps.core.models.mixins import BaseModel
 from apps.customer.models import Customer
 from apps.seller.models import Seller
+from utils.functions_utils import generate_random_code
 
 
 class Sale(BaseModel):
@@ -19,6 +20,11 @@ class Sale(BaseModel):
 
     def __str__(self):
         return f"NF {self.invoice_number}"
+    
+    def save(self, *args, **kwargs):
+        if not self.invoice_number:
+            self.invoice_number = generate_random_code()
+        super().save(*args, **kwargs)
 
     @property
     def total_value(self):

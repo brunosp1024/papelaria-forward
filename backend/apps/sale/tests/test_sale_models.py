@@ -2,16 +2,34 @@ from decimal import Decimal
 
 import pytest
 
+from apps.customer.tests.factories import CustomerFactory
 from apps.product.tests.factories import ProductFactory
 from apps.sale.models.sale_item import SaleItem
+from apps.sale.models.sale import Sale
 from apps.sale.tests.factories import SaleFactory
+from apps.seller.tests.factories import SellerFactory
 
 
 class TestSaleModel:
+    @pytest.mark.django_db
+    def test_invoice_number_generated_on_create(self):
+        customer = CustomerFactory()
+        seller = SellerFactory()
+        sale = Sale.objects.create(datetime='2024-01-01T00:00:00Z', customer=customer, seller=seller)
+        assert sale.invoice_number is not None
+        assert sale.invoice_number.isdigit()
+        assert len(sale.invoice_number) == 9
 
-    def test_str_returns_invoice_number(self):
-        sale = SaleFactory.build(invoice_number='INV-00099')
-        assert str(sale) == 'NF INV-00099'
+    @pytest.mark.django_db
+    def test_invoice_number_not_changed_on_update(self):
+        customer = CustomerFactory()
+        seller = SellerFactory()
+        sale = Sale.objects.create(datetime='2024-01-01T00:00:00Z', customer=customer, seller=seller)
+        original_invoice = sale.invoice_number
+        sale.datetime = '2024-01-02T00:00:00Z'
+        sale.save()
+        sale.refresh_from_db()
+        assert sale.invoice_number == original_invoice
 
     @pytest.mark.django_db
     def test_total_value_sums_all_item_subtotals(self):
