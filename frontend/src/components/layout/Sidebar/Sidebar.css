@@ -23,7 +23,7 @@
 }
 
 .sidebar__link--active {
-  @apply bg-brand-50 text-brand-900 ring-1 ring-brand-100;
+  @apply bg-brand-50 text-brand-900 ring-1 ring-brand-100 border-l-4 border-brand-500;
 }
 
 .sidebar__link--logout {
