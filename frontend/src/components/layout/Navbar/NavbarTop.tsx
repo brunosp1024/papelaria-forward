@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./NavbarTop.css";
 
 type NavbarTopProps = {
@@ -46,9 +48,9 @@ export function NavbarTop({ collapsed, onToggleSidebar, onLogout }: NavbarTopPro
             </svg>
           </button>
 
-          <a className="navbar-top__home" href="#dashboard-summary" aria-label="Ir para o inicio">
+          <Link className="navbar-top__home" to="/" aria-label="Ir para o inicio">
             <BrandLogo />
-          </a>
+          </Link>
         </div>
 
         <button className="navbar-top__logout" type="button" onClick={onLogout}>
