@@ -13,11 +13,16 @@ class DummyPersonSerializer(PersonSerializer):
 
 @pytest.mark.django_db
 class TestPersonSerializer:
-
     def test_duplicate_phone_is_rejected(self, dummy_person):
-        dummy_person.objects.create(name="Pessoa 1", email="pessoa1@example.com", phone="11912345678")
+        dummy_person.objects.create(
+            name="Pessoa 1", email="pessoa1@example.com", phone="11912345678"
+        )
         serializer = DummyPersonSerializer(
-            data={"name": "Pessoa 2", "email": "pessoa2@example.com", "phone": "11912345678"}
+            data={
+                "name": "Pessoa 2",
+                "email": "pessoa2@example.com",
+                "phone": "11912345678",
+            }
         )
         assert not serializer.is_valid()
         assert "phone" in serializer.errors
@@ -43,6 +48,10 @@ class TestPersonSerializer:
         )
         serializer = DummyPersonSerializer(
             person,
-            data={"name": "Pessoa 5 Atualizada", "email": "pessoa5@example.com", "phone": "11912345678"},
+            data={
+                "name": "Pessoa 5 Atualizada",
+                "email": "pessoa5@example.com",
+                "phone": "11912345678",
+            },
         )
         assert serializer.is_valid(), serializer.errors

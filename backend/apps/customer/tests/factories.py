@@ -2,7 +2,7 @@ import factory
 from faker import Faker
 from apps.customer.models import Customer
 
-fake = Faker('pt_BR')
+fake = Faker("pt_BR")
 
 
 class CustomerFactory(factory.django.DjangoModelFactory):

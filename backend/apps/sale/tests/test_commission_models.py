@@ -10,12 +10,13 @@ from apps.sale.models.sale_item import SaleItem
 
 @pytest.mark.django_db
 class TestCommissionCalculation:
-
     SALE_DATETIME = datetime(2026, 5, 27, 12, 0, tzinfo=timezone.utc)  # Wednesday (2)
     SALE_WEEKDAY = 2
 
     def test_commission_without_config(self):
-        product = ProductFactory(unit_value=Decimal("100"), commission_percentage=Decimal("5"))
+        product = ProductFactory(
+            unit_value=Decimal("100"), commission_percentage=Decimal("5")
+        )
         sale = SaleFactory()
         item = SaleItem.objects.create(sale=sale, product=product, quantity=2)
         assert item.commission_value == Decimal("10.00")  # 5% of 200
@@ -24,9 +25,11 @@ class TestCommissionCalculation:
         CommissionConfig.objects.create(
             day_of_week=self.SALE_WEEKDAY,
             min_percentage=Decimal("0"),
-            max_percentage=Decimal("3")
+            max_percentage=Decimal("3"),
         )
-        product = ProductFactory(unit_value=Decimal("100"), commission_percentage=Decimal("10"))
+        product = ProductFactory(
+            unit_value=Decimal("100"), commission_percentage=Decimal("10")
+        )
         sale = SaleFactory(datetime=self.SALE_DATETIME)
         item = SaleItem.objects.create(sale=sale, product=product, quantity=1)
         assert item.commission_value == Decimal("3.00")  # capped by max
@@ -35,9 +38,11 @@ class TestCommissionCalculation:
         CommissionConfig.objects.create(
             day_of_week=self.SALE_WEEKDAY,
             min_percentage=Decimal("5"),
-            max_percentage=Decimal("10")
+            max_percentage=Decimal("10"),
         )
-        product = ProductFactory(unit_value=Decimal("100"), commission_percentage=Decimal("2"))
+        product = ProductFactory(
+            unit_value=Decimal("100"), commission_percentage=Decimal("2")
+        )
         sale = SaleFactory(datetime=self.SALE_DATETIME)
         item = SaleItem.objects.create(sale=sale, product=product, quantity=1)
         assert item.commission_value == Decimal("5.00")  # floored by min
@@ -45,7 +50,6 @@ class TestCommissionCalculation:
 
 @pytest.mark.django_db
 class TestCommissionConfigModel:
-
     def test_clean_raises_when_min_greater_than_max(self):
         config = CommissionConfig(
             day_of_week=1,

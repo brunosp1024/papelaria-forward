@@ -7,7 +7,9 @@ from apps.product.serializers import ProductDetailSerializer as ProductSerialize
 class SaleItemReadSerializer(serializers.ModelSerializer):
     product = ProductSerializer(read_only=True)
     subtotal = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
-    commission_value = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    commission_value = serializers.DecimalField(
+        max_digits=10, decimal_places=2, read_only=True
+    )
 
     class Meta:
         model = SaleItem

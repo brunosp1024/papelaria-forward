@@ -14,29 +14,38 @@ class UUIDMixin(models.Model):
 class TimestampMixin(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
     class Meta:
         abstract = True
 
 
 class AuditMixin(models.Model):
     created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL,
-        related_name='%(app_label)s_%(class)s_created',
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="%(app_label)s_%(class)s_created",
     )
     updated_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL,
-        related_name='%(app_label)s_%(class)s_updated',
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="%(app_label)s_%(class)s_updated",
     )
-    
+
     class Meta:
         abstract = True
+
 
 class CustomManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(deleted_at=None)
 
+
 class SoftDeleteMixin(models.Model):
-    deleted_at = models.DateTimeField('Deleted at', default=None, null=True, blank=True)
+    deleted_at = models.DateTimeField("Deleted at", default=None, null=True, blank=True)
 
     objects = CustomManager()
     dm_objects = models.Manager()
@@ -53,6 +62,5 @@ class SoftDeleteMixin(models.Model):
 
 
 class BaseModel(UUIDMixin, TimestampMixin, AuditMixin, SoftDeleteMixin):
-
     class Meta:
         abstract = True

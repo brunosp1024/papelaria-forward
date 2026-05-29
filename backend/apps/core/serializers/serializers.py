@@ -4,7 +4,6 @@ from utils.validators import validate_phone as validate_phone_util
 
 
 class PersonSerializer(AuditSerializerMixin):
-
     def validate_phone(self, value):
         if not value:
             return None
@@ -15,6 +14,6 @@ class PersonSerializer(AuditSerializerMixin):
         if self.instance:
             qs = qs.exclude(pk=self.instance.pk)
         if qs.exists():
-            raise serializers.ValidationError('Telefone já cadastrado no sistema.')
+            raise serializers.ValidationError("Telefone já cadastrado no sistema.")
 
         return value

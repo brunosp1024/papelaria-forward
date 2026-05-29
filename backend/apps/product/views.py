@@ -8,25 +8,33 @@ from apps.core.authentication import CookieJWTAuthentication
 from apps.product.filters import ProductFilter
 
 from .models import Product
-from .serializers import ProductCreateUpdateSerializer, ProductListSerializer, ProductDetailSerializer
+from .serializers import (
+    ProductCreateUpdateSerializer,
+    ProductListSerializer,
+    ProductDetailSerializer,
+)
 
 
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
-    permission_resource = 'products'
+    permission_resource = "products"
     serializer_class = ProductListSerializer
     permission_classes = [IsAuthenticated]
-    authentication_classes = [CookieJWTAuthentication, BasicAuthentication, SessionAuthentication]
+    authentication_classes = [
+        CookieJWTAuthentication,
+        BasicAuthentication,
+        SessionAuthentication,
+    ]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    search_fields = ['code', 'description']
-    ordering_fields = ['code', 'created_at']
+    search_fields = ["code", "description"]
+    ordering_fields = ["code", "created_at"]
     filterset_class = ProductFilter
     serializer_classes = {
-        'create': ProductCreateUpdateSerializer,
-        'list': ProductListSerializer,
-        'retrieve': ProductDetailSerializer,
-        'update': ProductCreateUpdateSerializer,
-        'partial_update': ProductCreateUpdateSerializer,
+        "create": ProductCreateUpdateSerializer,
+        "list": ProductListSerializer,
+        "retrieve": ProductDetailSerializer,
+        "update": ProductCreateUpdateSerializer,
+        "partial_update": ProductCreateUpdateSerializer,
     }
 
     def get_serializer_class(self):

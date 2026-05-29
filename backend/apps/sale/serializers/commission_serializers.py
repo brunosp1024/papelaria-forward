@@ -29,7 +29,11 @@ class CommissionConfigSerializer(serializers.ModelSerializer):
             if max_percentage is None:
                 max_percentage = self.instance.max_percentage
 
-        if min_percentage is not None and max_percentage is not None and min_percentage > max_percentage:
+        if (
+            min_percentage is not None
+            and max_percentage is not None
+            and min_percentage > max_percentage
+        ):
             raise serializers.ValidationError(
                 "O percentual mínimo não pode ser maior que o máximo."
             )

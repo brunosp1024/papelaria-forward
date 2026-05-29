@@ -20,12 +20,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     # Third-party
     "rest_framework",
     "corsheaders",
     "rest_framework_simplejwt.token_blacklist",
-
     # Local
     "apps.core",
     "apps.customer",
@@ -75,7 +73,9 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.getenv("POSTGRES_DB", os.getenv("DB_NAME", "papelaria_forward")),
         "USER": os.getenv("POSTGRES_USER", os.getenv("DB_USER", "postgres")),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", os.getenv("DB_PASSWORD", "postgres")),
+        "PASSWORD": os.getenv(
+            "POSTGRES_PASSWORD", os.getenv("DB_PASSWORD", "postgres")
+        ),
         "HOST": os.getenv("DB_HOST", os.getenv("POSTGRES_HOST", "localhost")),
         "PORT": os.getenv("DB_PORT", os.getenv("POSTGRES_PORT", "5432")),
     }

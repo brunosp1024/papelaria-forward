@@ -1,7 +1,7 @@
 from .settings import *  # noqa: F403
 
 
-SECRET_KEY = 'test-secret-key'
+SECRET_KEY = "test-secret-key"
 DEBUG = False
 
 DATABASES = {

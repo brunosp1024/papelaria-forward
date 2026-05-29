@@ -14,11 +14,11 @@ def test_validate_phone_accepts_valid_format():
 
 
 def test_validate_phone_accepts_10_digits_with_ddd():
-	assert validate_phone("1132345678") is None
+    assert validate_phone("1132345678") is None
 
 
 def test_validate_phone_accepts_11_digits_with_ddd():
-	assert validate_phone("11912345678") is None
+    assert validate_phone("11912345678") is None
 
 
 def test_validate_phone_rejects_non_digit_chars():

@@ -9,10 +9,10 @@ class CustomerCreateUpdateSerializer(PersonSerializer):
         fields = ["id", "name", "email", "phone"]
         read_only_fields = ["id"]
 
-class CustomerDetailSerializer(serializers.ModelSerializer):
 
+class CustomerDetailSerializer(serializers.ModelSerializer):
     class Meta:
-        model  = Customer
+        model = Customer
         fields = [
             "id",
             "name",
@@ -21,13 +21,13 @@ class CustomerDetailSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "created_by",
-            "updated_by"
+            "updated_by",
         ]
 
-class CustomerListSerializer(serializers.ModelSerializer):
 
+class CustomerListSerializer(serializers.ModelSerializer):
     class Meta:
-        model  = Customer
+        model = Customer
         fields = [
             "id",
             "name",
@@ -36,5 +36,5 @@ class CustomerListSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "created_by",
-            "updated_by"
+            "updated_by",
         ]

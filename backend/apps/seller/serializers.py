@@ -5,15 +5,14 @@ from apps.seller.models import Seller
 
 class SellerCreateUpdateSerializer(PersonSerializer):
     class Meta:
-        model  = Seller
+        model = Seller
         fields = ["id", "name", "code", "email", "phone"]
         read_only_fields = ["id"]
 
 
 class SellerDetailSerializer(serializers.ModelSerializer):
-
     class Meta:
-        model  = Seller
+        model = Seller
         fields = [
             "id",
             "name",
@@ -23,14 +22,13 @@ class SellerDetailSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "created_by",
-            "updated_by"
+            "updated_by",
         ]
 
 
 class SellerListSerializer(serializers.ModelSerializer):
-
     class Meta:
-        model  = Seller
+        model = Seller
         fields = [
             "id",
             "name",
@@ -40,5 +38,5 @@ class SellerListSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "created_by",
-            "updated_by"
+            "updated_by",
         ]

@@ -8,25 +8,33 @@ from apps.core.authentication import CookieJWTAuthentication
 from apps.seller.filters import SellerFilter
 
 from .models import Seller
-from .serializers import SellerCreateUpdateSerializer, SellerListSerializer, SellerDetailSerializer
+from .serializers import (
+    SellerCreateUpdateSerializer,
+    SellerListSerializer,
+    SellerDetailSerializer,
+)
 
 
 class SellerViewSet(ModelViewSet):
     queryset = Seller.objects.all()
-    permission_resource = 'sellers'
+    permission_resource = "sellers"
     serializer_class = SellerListSerializer
     permission_classes = [IsAuthenticated]
-    authentication_classes = [CookieJWTAuthentication, BasicAuthentication, SessionAuthentication]
+    authentication_classes = [
+        CookieJWTAuthentication,
+        BasicAuthentication,
+        SessionAuthentication,
+    ]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    search_fields = ['name', 'email']
-    ordering_fields = ['name', 'created_at']
+    search_fields = ["name", "email"]
+    ordering_fields = ["name", "created_at"]
     filterset_class = SellerFilter
     serializer_classes = {
-        'create': SellerCreateUpdateSerializer,
-        'list': SellerListSerializer,
-        'retrieve': SellerDetailSerializer,
-        'update': SellerCreateUpdateSerializer,
-        'partial_update': SellerCreateUpdateSerializer,
+        "create": SellerCreateUpdateSerializer,
+        "list": SellerListSerializer,
+        "retrieve": SellerDetailSerializer,
+        "update": SellerCreateUpdateSerializer,
+        "partial_update": SellerCreateUpdateSerializer,
     }
 
     def get_serializer_class(self):

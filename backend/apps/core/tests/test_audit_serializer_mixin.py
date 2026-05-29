@@ -14,18 +14,17 @@ class DummyAuditSerializer(AuditSerializerMixin):
 
 def make_request(user):
     factory = APIRequestFactory()
-    req = factory.post('/')
+    req = factory.post("/")
     req.user = user
     return req
 
 
 @pytest.mark.django_db
 class TestAuditSerializerMixin:
-
     def test_created_by_and_updated_by_are_set_on_create(self, admin_user):
         serializer = DummyAuditSerializer(
-            data={'name': 'Audit Test', 'email': 'audit-create@example.com'},
-            context={'request': make_request(admin_user)},
+            data={"name": "Audit Test", "email": "audit-create@example.com"},
+            context={"request": make_request(admin_user)},
         )
         assert serializer.is_valid(), serializer.errors
         obj = serializer.save()
@@ -34,24 +33,24 @@ class TestAuditSerializerMixin:
 
     def test_updated_by_is_set_on_update(self, django_user_model):
         update_user = django_user_model.objects.create_user(username="user-update")
-        obj = Customer.objects.create(name='Original', email='original@example.com')
+        obj = Customer.objects.create(name="Original", email="original@example.com")
         assert obj.created_by is None
         serializer = DummyAuditSerializer(
             obj,
-            data={'name': 'Updated'},
+            data={"name": "Updated"},
             partial=True,
-            context={'request': make_request(update_user)},
+            context={"request": make_request(update_user)},
         )
         assert serializer.is_valid(), serializer.errors
         serializer.save()
         obj.refresh_from_db()
         assert obj.updated_by == update_user
-    
+
     def test_created_by_and_updated_by_without_user(self):
         """Test that created_by and updated_by are None when no user is provided."""
         serializer = DummyAuditSerializer(
-            data={'name': 'Audit Test', 'email': 'audit-without-user@example.com'},
-            context={'request': None},
+            data={"name": "Audit Test", "email": "audit-without-user@example.com"},
+            context={"request": None},
         )
         assert serializer.is_valid(), serializer.errors
         obj = serializer.save()

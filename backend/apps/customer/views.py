@@ -6,26 +6,34 @@ from apps.core.authentication import CookieJWTAuthentication
 
 from apps.customer.filters import CustomerFilter
 from .models import Customer
-from .serializers import CustomerCreateUpdateSerializer, CustomerListSerializer, CustomerDetailSerializer
+from .serializers import (
+    CustomerCreateUpdateSerializer,
+    CustomerListSerializer,
+    CustomerDetailSerializer,
+)
 from rest_framework.permissions import IsAuthenticated
 
 
 class CustomerViewSet(ModelViewSet):
     queryset = Customer.objects.all()
-    permission_resource = 'customers'
+    permission_resource = "customers"
     serializer_class = CustomerListSerializer
     permission_classes = [IsAuthenticated]
-    authentication_classes = [CookieJWTAuthentication, BasicAuthentication, SessionAuthentication]
+    authentication_classes = [
+        CookieJWTAuthentication,
+        BasicAuthentication,
+        SessionAuthentication,
+    ]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    search_fields = ['name', 'email']
-    ordering_fields = ['name', 'created_at']
+    search_fields = ["name", "email"]
+    ordering_fields = ["name", "created_at"]
     filterset_class = CustomerFilter
     serializer_classes = {
-        'create': CustomerCreateUpdateSerializer,
-        'list': CustomerListSerializer,
-        'retrieve': CustomerDetailSerializer,
-        'update': CustomerCreateUpdateSerializer,
-        'partial_update': CustomerCreateUpdateSerializer
+        "create": CustomerCreateUpdateSerializer,
+        "list": CustomerListSerializer,
+        "retrieve": CustomerDetailSerializer,
+        "update": CustomerCreateUpdateSerializer,
+        "partial_update": CustomerCreateUpdateSerializer,
     }
 
     def get_serializer_class(self):

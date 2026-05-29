@@ -5,7 +5,7 @@ from apps.customer.tests.factories import CustomerFactory
 from apps.seller.tests.factories import SellerFactory
 from apps.sale.models.sale import Sale
 
-fake = Faker('pt_BR')
+fake = Faker("pt_BR")
 
 
 class SaleFactory(factory.django.DjangoModelFactory):

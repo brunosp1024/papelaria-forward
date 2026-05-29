@@ -8,25 +8,32 @@ from apps.core.authentication import CookieJWTAuthentication
 from apps.sale.filters import SaleFilter
 
 from apps.sale.models.sale import Sale
-from apps.sale.serializers.sale_serializers import SaleReadSerializer, SaleWriteSerializer
+from apps.sale.serializers.sale_serializers import (
+    SaleReadSerializer,
+    SaleWriteSerializer,
+)
 
 
 class SaleViewSet(ModelViewSet):
     queryset = Sale.objects.all()
-    permission_resource = 'sales'
+    permission_resource = "sales"
     serializer_class = SaleReadSerializer
     permission_classes = [IsAuthenticated]
-    authentication_classes = [CookieJWTAuthentication, BasicAuthentication, SessionAuthentication]
+    authentication_classes = [
+        CookieJWTAuthentication,
+        BasicAuthentication,
+        SessionAuthentication,
+    ]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    search_fields = ['invoice_number']
-    ordering_fields = ['invoice_number', 'datetime', 'created_at']
+    search_fields = ["invoice_number"]
+    ordering_fields = ["invoice_number", "datetime", "created_at"]
     filterset_class = SaleFilter
     serializer_classes = {
-        'create': SaleWriteSerializer,
-        'list': SaleReadSerializer,
-        'retrieve': SaleReadSerializer,
-        'update': SaleWriteSerializer,
-        'partial_update': SaleWriteSerializer,
+        "create": SaleWriteSerializer,
+        "list": SaleReadSerializer,
+        "retrieve": SaleReadSerializer,
+        "update": SaleWriteSerializer,
+        "partial_update": SaleWriteSerializer,
     }
 
     def get_serializer_class(self):

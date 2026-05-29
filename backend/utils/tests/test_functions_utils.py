@@ -8,11 +8,13 @@ def test_generate_random_code_length():
     assert len(code) == 9
     assert code.isdigit()
 
+
 # Test: generated code with custom length
 def test_generate_random_code_custom_length():
     code = generate_random_code(5)
     assert len(code) == 5
     assert code.isdigit()
+
 
 # Test: length < 1 raises ValueError
 def test_generate_random_code_invalid_length():
@@ -20,6 +22,7 @@ def test_generate_random_code_invalid_length():
         generate_random_code(0)
     with pytest.raises(ValueError):
         generate_random_code(-3)
+
 
 # Test: generated codes are random
 def test_generate_random_code_randomness():

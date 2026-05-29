@@ -4,18 +4,22 @@ from django.db import migrations, models
 
 
 def populate_seller_codes(apps, schema_editor):
-    Seller = apps.get_model('seller', 'Seller')
-    used_codes = set(Seller.objects.exclude(code__isnull=True).values_list('code', flat=True))
+    Seller = apps.get_model("seller", "Seller")
+    used_codes = set(
+        Seller.objects.exclude(code__isnull=True).values_list("code", flat=True)
+    )
     next_number = 1
 
-    for seller in Seller.objects.filter(code__isnull=True).order_by('created_at', 'id').only('id'):
+    for seller in (
+        Seller.objects.filter(code__isnull=True).order_by("created_at", "id").only("id")
+    ):
         code = f"S{next_number:05d}"
         while code in used_codes:
             next_number += 1
             code = f"S{next_number:05d}"
 
         seller.code = code
-        seller.save(update_fields=['code'])
+        seller.save(update_fields=["code"])
         used_codes.add(code)
         next_number += 1
 
@@ -25,21 +29,20 @@ def noop_reverse(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('seller', '0002_alter_seller_created_by_alter_seller_updated_by'),
+        ("seller", "0002_alter_seller_created_by_alter_seller_updated_by"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='seller',
-            name='code',
+            model_name="seller",
+            name="code",
             field=models.CharField(max_length=10, null=True),
         ),
         migrations.RunPython(populate_seller_codes, noop_reverse),
         migrations.AlterField(
-            model_name='seller',
-            name='code',
+            model_name="seller",
+            name="code",
             field=models.CharField(max_length=10, unique=True),
         ),
     ]

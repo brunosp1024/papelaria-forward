@@ -3,7 +3,7 @@ from faker import Faker
 
 from apps.product.models import Product
 
-fake = Faker('pt_BR')
+fake = Faker("pt_BR")
 
 
 class ProductFactory(factory.django.DjangoModelFactory):

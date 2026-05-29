@@ -9,12 +9,10 @@ from apps.sale.models.commission_config import CommissionConfig
 
 class SaleItem(BaseModel):
     sale = models.ForeignKey(
-        Sale, on_delete=models.CASCADE,
-        related_name="items", verbose_name="Venda"
+        Sale, on_delete=models.CASCADE, related_name="items", verbose_name="Venda"
     )
     product = models.ForeignKey(
-        Product, on_delete=models.PROTECT,
-        verbose_name="Produto"
+        Product, on_delete=models.PROTECT, verbose_name="Produto"
     )
     quantity = models.PositiveIntegerField(
         "Quantidade", validators=[MinValueValidator(1)]
@@ -39,7 +37,9 @@ class SaleItem(BaseModel):
 
         try:
             config = CommissionConfig.objects.get(day_of_week=weekday)
-            percentage = max(config.min_percentage, min(percentage, config.max_percentage))
+            percentage = max(
+                config.min_percentage, min(percentage, config.max_percentage)
+            )
         except CommissionConfig.DoesNotExist:
             pass
 

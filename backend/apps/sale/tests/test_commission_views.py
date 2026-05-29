@@ -15,7 +15,7 @@ from apps.seller.tests.factories import SellerFactory
 
 def build_view(params=None):
     factory = APIRequestFactory()
-    request = factory.get('/api/v1/commissions/', data=params or {})
+    request = factory.get("/api/v1/commissions/", data=params or {})
     view = CommissionConfigViewSet()
     view.request = request
     return view
@@ -26,13 +26,13 @@ class TestCommissionConfigGetQueryset:
     def test_get_queryset_returns_commission_configs_ordered_by_day_of_week(self):
         config_wed = CommissionConfig.objects.create(
             day_of_week=2,
-            min_percentage='2.50',
-            max_percentage='6.00',
+            min_percentage="2.50",
+            max_percentage="6.00",
         )
         config_mon = CommissionConfig.objects.create(
             day_of_week=0,
-            min_percentage='1.50',
-            max_percentage='5.00',
+            min_percentage="1.50",
+            max_percentage="5.00",
         )
 
         configs = list(build_view().get_queryset())
@@ -41,37 +41,39 @@ class TestCommissionConfigGetQueryset:
 
     def test_summary_returns_total_commission_grouped_by_seller(self):
         customer = CustomerFactory()
-        seller = SellerFactory(code='S00001', name='Alice Seller')
+        seller = SellerFactory(code="S00001", name="Alice Seller")
 
         CommissionConfig.objects.create(
             day_of_week=2,  # Wednesday
-            min_percentage=Decimal('3.00'),
-            max_percentage=Decimal('5.00'),
+            min_percentage=Decimal("3.00"),
+            max_percentage=Decimal("5.00"),
         )
 
         sale = SaleFactory(
             seller=seller,
             customer=customer,
             datetime=datetime(2026, 5, 20, 12, 0, tzinfo=timezone.utc),
-            invoice_number='INV-SUMMARY-001',
+            invoice_number="INV-SUMMARY-001",
         )
-        product = ProductFactory(unit_value=Decimal('100.00'), commission_percentage=Decimal('10.00'))
+        product = ProductFactory(
+            unit_value=Decimal("100.00"), commission_percentage=Decimal("10.00")
+        )
         SaleItem.objects.create(sale=sale, product=product, quantity=2)
 
         factory = APIRequestFactory()
         request = factory.get(
-            '/api/v1/commissions/summary/',
-            data={'start_date': '2026-05-01', 'end_date': '2026-05-31'},
+            "/api/v1/commissions/summary/",
+            data={"start_date": "2026-05-01", "end_date": "2026-05-31"},
         )
-        response = CommissionConfigViewSet.as_view({'get': 'summary'})(request)
+        response = CommissionConfigViewSet.as_view({"get": "summary"})(request)
 
         assert response.status_code == 200
         assert len(response.data) == 1
-        seller_data = response.data[0]['seller']
-        assert str(seller_data['id']) == str(seller.id)
-        assert seller_data['code'] == 'S00001'
-        assert seller_data['name'] == 'Alice Seller'
-        if hasattr(seller, 'email') and 'email' in seller_data:
-            assert seller_data['email'] == seller.email
-        assert response.data[0]['total_commission'] == '10.00'
-        assert response.data[0]['total_sales'] == 1
+        seller_data = response.data[0]["seller"]
+        assert str(seller_data["id"]) == str(seller.id)
+        assert seller_data["code"] == "S00001"
+        assert seller_data["name"] == "Alice Seller"
+        if hasattr(seller, "email") and "email" in seller_data:
+            assert seller_data["email"] == seller.email
+        assert response.data[0]["total_commission"] == "10.00"
+        assert response.data[0]["total_sales"] == 1

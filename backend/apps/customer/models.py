@@ -2,7 +2,6 @@ from apps.core.models.person import Person
 
 
 class Customer(Person):
-
     class Meta:
         db_table = "customers"
         ordering = ["-created_at"]

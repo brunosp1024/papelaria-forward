@@ -7,20 +7,22 @@ from utils.functions_utils import generate_random_code
 
 
 class Sale(BaseModel):
-    invoice_number = models.CharField('Invoice number', max_length=50, unique=True)
-    datetime = models.DateTimeField('Datetime')
-    customer = models.ForeignKey(Customer, on_delete=models.PROTECT, related_name='sales')
-    seller = models.ForeignKey(Seller, on_delete=models.PROTECT, related_name='sales')
+    invoice_number = models.CharField("Invoice number", max_length=50, unique=True)
+    datetime = models.DateTimeField("Datetime")
+    customer = models.ForeignKey(
+        Customer, on_delete=models.PROTECT, related_name="sales"
+    )
+    seller = models.ForeignKey(Seller, on_delete=models.PROTECT, related_name="sales")
 
     class Meta:
-        db_table = 'sales'
-        ordering = ['-datetime']
-        verbose_name = 'sale'
-        verbose_name_plural = 'sales'
+        db_table = "sales"
+        ordering = ["-datetime"]
+        verbose_name = "sale"
+        verbose_name_plural = "sales"
 
     def __str__(self):
         return f"NF {self.invoice_number}"
-    
+
     def save(self, *args, **kwargs):
         if not self.invoice_number:
             self.invoice_number = generate_random_code()

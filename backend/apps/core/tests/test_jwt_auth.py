@@ -4,7 +4,6 @@ from rest_framework.test import APIClient
 
 @pytest.mark.django_db
 class TestJWTAuthentication:
-
     @pytest.fixture(autouse=True)
     def _disable_auth_throttle(self, settings):
         settings.REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"]["auth"] = "1000/minute"
@@ -27,7 +26,9 @@ class TestJWTAuthentication:
         assert res.cookies["refresh"]["path"] == "/"
 
     def test_access_protected_endpoint_with_bearer_token(self, django_user_model):
-        django_user_model.objects.create_user(username="jwt-user-2", password="jwt-pass-2")
+        django_user_model.objects.create_user(
+            username="jwt-user-2", password="jwt-pass-2"
+        )
         client = APIClient()
 
         token_res = client.post(
@@ -44,7 +45,9 @@ class TestJWTAuthentication:
         assert protected_res.status_code == 200
 
     def test_access_protected_endpoint_with_access_cookie(self, django_user_model):
-        django_user_model.objects.create_user(username="jwt-user-cookie-2", password="jwt-pass-cookie-2")
+        django_user_model.objects.create_user(
+            username="jwt-user-cookie-2", password="jwt-pass-cookie-2"
+        )
         client = APIClient()
 
         token_res = client.post(
@@ -59,7 +62,9 @@ class TestJWTAuthentication:
         assert protected_res.status_code == 200
 
     def test_refresh_uses_refresh_cookie(self, django_user_model):
-        django_user_model.objects.create_user(username="jwt-user-3", password="jwt-pass-3")
+        django_user_model.objects.create_user(
+            username="jwt-user-3", password="jwt-pass-3"
+        )
         client = APIClient()
 
         login_res = client.post(
@@ -82,7 +87,9 @@ class TestJWTAuthentication:
         assert refresh_res.cookies["access"]["path"] == "/"
 
     def test_refresh_accepts_cookie_without_refresh_in_body(self, django_user_model):
-        django_user_model.objects.create_user(username="jwt-user-cookie", password="jwt-pass-cookie")
+        django_user_model.objects.create_user(
+            username="jwt-user-cookie", password="jwt-pass-cookie"
+        )
         client = APIClient()
 
         login_res = client.post(
@@ -98,8 +105,12 @@ class TestJWTAuthentication:
         assert refresh_res.data["detail"] == "Token updated successfully."
         assert "access" in refresh_res.cookies
 
-    def test_refresh_rotates_token_and_invalidates_previous_one(self, django_user_model):
-        django_user_model.objects.create_user(username="jwt-user-rotate", password="jwt-pass-rotate")
+    def test_refresh_rotates_token_and_invalidates_previous_one(
+        self, django_user_model
+    ):
+        django_user_model.objects.create_user(
+            username="jwt-user-rotate", password="jwt-pass-rotate"
+        )
         client = APIClient()
 
         login_res = client.post(
@@ -131,7 +142,9 @@ class TestJWTAuthentication:
         assert reused_refresh_res.status_code == 401
 
     def test_logout_clears_cookies(self, django_user_model):
-        django_user_model.objects.create_user(username="jwt-user-4", password="jwt-pass-4")
+        django_user_model.objects.create_user(
+            username="jwt-user-4", password="jwt-pass-4"
+        )
         client = APIClient()
 
         login_res = client.post(

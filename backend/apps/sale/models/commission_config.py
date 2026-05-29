@@ -6,6 +6,7 @@ from apps.core.models.mixins import BaseModel
 
 class CommissionConfig(BaseModel):
     """Configuração de comissão por dia da semana (configurável)."""
+
     WEEKDAYS = [
         (0, "Segunda-feira"),
         (1, "Terça-feira"),
@@ -15,20 +16,22 @@ class CommissionConfig(BaseModel):
         (5, "Sábado"),
         (6, "Domingo"),
     ]
-    day_of_week = models.IntegerField(
-        "Dia da Semana", choices=WEEKDAYS, unique=True
-    )
+    day_of_week = models.IntegerField("Dia da Semana", choices=WEEKDAYS, unique=True)
     min_percentage = models.DecimalField(
-        "% Mínima", max_digits=5, decimal_places=2,
-        validators=[MinValueValidator(Decimal("0")), MaxValueValidator(Decimal("10"))]
+        "% Mínima",
+        max_digits=5,
+        decimal_places=2,
+        validators=[MinValueValidator(Decimal("0")), MaxValueValidator(Decimal("10"))],
     )
     max_percentage = models.DecimalField(
-        "% Máxima", max_digits=5, decimal_places=2,
-        validators=[MinValueValidator(Decimal("0")), MaxValueValidator(Decimal("10"))]
+        "% Máxima",
+        max_digits=5,
+        decimal_places=2,
+        validators=[MinValueValidator(Decimal("0")), MaxValueValidator(Decimal("10"))],
     )
 
     class Meta:
-        db_table = 'commission_config'
+        db_table = "commission_config"
         verbose_name = "Commission Config"
         verbose_name_plural = "Commission Configs"
         ordering = ["day_of_week"]
@@ -38,5 +41,6 @@ class CommissionConfig(BaseModel):
 
     def clean(self):
         from django.core.exceptions import ValidationError
+
         if self.min_percentage > self.max_percentage:
             raise ValidationError("O mínimo não pode ser maior que o máximo.")

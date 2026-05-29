@@ -6,11 +6,11 @@ from .views import CommissionConfigViewSet, SaleViewSet
 class OptionalSlashRouter(DefaultRouter):
     def __init__(self):
         super().__init__()
-        self.trailing_slash = '/?'
+        self.trailing_slash = "/?"
 
 
 router = OptionalSlashRouter()
-router.register(r'sales', SaleViewSet)
-router.register(r'commissions', CommissionConfigViewSet)
+router.register(r"sales", SaleViewSet)
+router.register(r"commissions", CommissionConfigViewSet)
 
 urlpatterns = router.urls

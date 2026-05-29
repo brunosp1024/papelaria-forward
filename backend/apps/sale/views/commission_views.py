@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 
-from django.db.models import DecimalField, ExpressionWrapper, F, Q, Sum, Value, Count
-from django.db.models.functions import Coalesce
+from django.db.models import Q
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
@@ -12,7 +11,6 @@ from apps.sale.serializers.commission_serializers import (
 )
 from apps.sale.models.commission_config import CommissionConfig
 from apps.sale.models.sale import Sale
-from apps.seller.models import Seller
 
 
 class CommissionConfigViewSet(ModelViewSet):
@@ -30,7 +28,9 @@ class CommissionConfigViewSet(ModelViewSet):
             end = datetime.strptime(end_date, "%Y-%m-%d") + timedelta(days=1)
             sales_filter = Q(datetime__gte=start, datetime__lt=end)
 
-        sales_in_period = Sale.objects.filter(sales_filter).prefetch_related("items__product", "seller")
+        sales_in_period = Sale.objects.filter(sales_filter).prefetch_related(
+            "items__product", "seller"
+        )
 
         seller_data = {}
 
@@ -44,7 +44,9 @@ class CommissionConfigViewSet(ModelViewSet):
                 }
             seller_data[seller.id]["total_sales"] += 1
             for item in sale.items.all():
-                seller_data[seller.id]["total_commission"] += float(item.commission_value)
+                seller_data[seller.id]["total_commission"] += float(
+                    item.commission_value
+                )
 
         payload = list(seller_data.values())
         serializer = SellerCommissionSummarySerializer(payload, many=True)
