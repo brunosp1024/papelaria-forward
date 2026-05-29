@@ -61,5 +61,11 @@ class TestCommissionConfigGetQueryset:
 
         assert response.status_code == 200
         assert len(response.data) == 1
-        assert response.data[0]['seller']['id'] == str(seller.id)
+        seller_data = response.data[0]['seller']
+        assert str(seller_data['id']) == str(seller.id)
+        assert seller_data['code'] == 'S00001'
+        assert seller_data['name'] == 'Alice Seller'
+        if hasattr(seller, 'email') and 'email' in seller_data:
+            assert seller_data['email'] == seller.email
         assert response.data[0]['total_commission'] == '20.00'
+        assert response.data[0]['total_sales'] == 1

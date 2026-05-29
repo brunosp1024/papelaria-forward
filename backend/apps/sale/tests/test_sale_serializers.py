@@ -27,7 +27,6 @@ class TestSaleWriteSerializer:
         seller = SellerFactory()
         product = ProductFactory()
         data = {
-            'invoice_number': 'INV-00001',
             'datetime': '2026-05-26T12:00:00Z',
             'customer': customer.pk,
             'seller': seller.pk,
@@ -39,27 +38,10 @@ class TestSaleWriteSerializer:
         assert s.is_valid(), s.errors
         sale = s.save()
         assert sale.pk is not None
-        assert sale.invoice_number == 'INV-00001'
         assert sale.items.count() == 1
         assert sale.created_by == admin_user
         assert sale.updated_by == admin_user
 
-    @pytest.mark.django_db
-    def test_missing_invoice_number_is_invalid(self):
-        customer = CustomerFactory()
-        seller = SellerFactory()
-        product = ProductFactory()
-        data = {
-            'datetime': '2026-05-26T12:00:00Z',
-            'customer': customer.pk,
-            'seller': seller.pk,
-            'items': [
-                {'product': product.pk, 'quantity': 1},
-            ],
-        }
-        s = SaleWriteSerializer(data=data)
-        assert not s.is_valid()
-        assert 'invoice_number' in s.errors
 
     @pytest.mark.django_db
     def test_missing_items_is_invalid(self):

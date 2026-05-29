@@ -38,6 +38,7 @@ class CommissionConfigSerializer(serializers.ModelSerializer):
 
 class SellerCommissionSummarySerializer(serializers.Serializer):
     seller = SellerListSerializer(read_only=True)
+    total_sales = serializers.IntegerField(read_only=True)
     total_commission = serializers.DecimalField(
         max_digits=10,
         decimal_places=2,

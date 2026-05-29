@@ -12,7 +12,6 @@ class SaleFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Sale
 
-    invoice_number = factory.Sequence(lambda n: f'INV-{n:05d}')
     datetime = factory.LazyFunction(fake.date_time_this_year)
     customer = factory.SubFactory(CustomerFactory)
     seller = factory.SubFactory(SellerFactory)
