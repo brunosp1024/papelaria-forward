@@ -15,7 +15,7 @@
 }
 
 .sales-list__totals-row th {
-  @apply bg-brand-50 font-bold text-brand-900;
+  @apply bg-brand-50 font-bold text-brand-900 text-left;
 }
 
 .sales-list__empty-inline {

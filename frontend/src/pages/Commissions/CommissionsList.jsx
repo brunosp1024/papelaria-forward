@@ -26,7 +26,7 @@ const CommissionsList = () => {
             dateObj ? dateObj.toISOString().slice(0, 10) : "";
 
         try {
-            const response = await api.get('/commissions/', {
+            const response = await api.get('/commissions/summary', {
                 params: {
                     start_date: formatDate(startDate),
                     end_date: formatDate(endDate)
