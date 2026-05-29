@@ -52,7 +52,7 @@
 }
 
 .sales-list__icon-button--danger {
-  @apply hover:border-rose-300 hover:text-rose-700;
+  @apply border-rose-200 text-rose-500 hover:border-rose-500 hover:text-rose-900;
 }
 
 .sales-list__empty {

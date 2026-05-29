@@ -138,8 +138,8 @@ export default function SalesList() {
                               </button>
                               <Link className="sales-list__icon-button" to={`/vendas/${sale.id}`} aria-label="Editar venda">
                                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                  <path d="M4 20H8L18 10L14 6L4 16V20Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                                  <path d="M12.5 7.5L16.5 11.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                                  <path d="M4 20H8L18 10L14 6L4 16V20Z" stroke="#4f89ff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                                  <path d="M12.5 7.5L16.5 11.5" stroke="#4f89ff" strokeWidth="1.8" strokeLinecap="round" />
                                 </svg>
                               </Link>
                               <button

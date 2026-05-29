@@ -1,0 +1,51 @@
+.table-commissions {
+  @apply max-h-[440px] overflow-auto rounded-xl border border-slate-200;
+}
+
+.table-commissions__table {
+  @apply w-full min-w-[720px] border-separate border-spacing-0 text-sm;
+}
+
+.table-commissions__code-column {
+  @apply w-[96px];
+}
+
+.table-commissions__seller-column {
+  @apply w-auto;
+}
+
+.table-commissions__sales-column {
+  @apply w-[160px];
+}
+
+.table-commissions__total-column {
+  @apply w-[180px];
+}
+
+.table-commissions thead th {
+  @apply sticky top-0 z-10 border-b border-slate-200 bg-slate-50 px-4 py-3 text-left text-xs font-extrabold uppercase tracking-wide text-slate-600;
+}
+
+.table-commissions tbody td,
+.table-commissions tbody th,
+.table-commissions tfoot th {
+  @apply border-b border-slate-100 px-4 py-3 align-middle text-slate-700;
+}
+
+.table-commissions tfoot th {
+  @apply border-b-0 border-t border-slate-200 bg-slate-50 font-extrabold text-brand-900;
+}
+
+.table-commissions tbody tr:hover td {
+  @apply bg-slate-50;
+}
+
+.table-commissions tr td:last-child,
+.table-commissions tr th:last-child {
+  @apply text-right;
+}
+
+.table-commissions tr td:nth-child(4),
+.table-commissions tr th:nth-child(4) {
+  @apply text-center;
+}

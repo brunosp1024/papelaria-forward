@@ -5,6 +5,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import SalesList from "./pages/Sales/SalesList";
 import SalesForm from "./pages/Sales/SalesForm";
+import CommissionsList from "./pages/Commissions/CommissionsList";
 import DashboardLayout from "./pages/Dashboard/Dashboard";
 import Login from "./pages/Login/Login";
 import { BaseLayout } from "./components/layout/BaseLayout";
@@ -35,6 +36,7 @@ function AppContent() {
           <Route path="/vendas" element={<SalesList />} />
           <Route path="/vendas/nova" element={<SalesForm />} />
           <Route path="/vendas/:id" element={<SalesForm />} />
+          <Route path="/comissoes" element={<CommissionsList />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

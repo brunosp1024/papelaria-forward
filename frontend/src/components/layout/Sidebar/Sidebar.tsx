@@ -44,9 +44,9 @@ export function Sidebar({ collapsed, currentPath, onLogout }: SidebarProps) {
         </Link>
 
         <Link
-          className={`sidebar__link ${currentPath === "/" ? "sidebar__link--active" : ""}`}
-          to="/"
-          title="Resumo"
+          className={`sidebar__link ${currentPath === "/comissoes" ? "sidebar__link--active" : ""}`}
+          to="/comissoes"
+          title="Comissoes"
         >
           <span className="sidebar__link-content">
             <span className="sidebar__icon" aria-hidden="true">
