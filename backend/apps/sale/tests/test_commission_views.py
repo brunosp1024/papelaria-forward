@@ -43,6 +43,12 @@ class TestCommissionConfigGetQueryset:
         customer = CustomerFactory()
         seller = SellerFactory(code='S00001', name='Alice Seller')
 
+        CommissionConfig.objects.create(
+            day_of_week=2,  # Wednesday
+            min_percentage=Decimal('3.00'),
+            max_percentage=Decimal('5.00'),
+        )
+
         sale = SaleFactory(
             seller=seller,
             customer=customer,
@@ -67,5 +73,5 @@ class TestCommissionConfigGetQueryset:
         assert seller_data['name'] == 'Alice Seller'
         if hasattr(seller, 'email') and 'email' in seller_data:
             assert seller_data['email'] == seller.email
-        assert response.data[0]['total_commission'] == '20.00'
+        assert response.data[0]['total_commission'] == '10.00'
         assert response.data[0]['total_sales'] == 1

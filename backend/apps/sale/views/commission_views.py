@@ -23,7 +23,6 @@ class CommissionConfigViewSet(ModelViewSet):
     def summary(self, request):
         start_date = request.GET.get("start_date")
         end_date = request.GET.get("end_date")
-        print("Start date:", start_date, "End date:", end_date)
 
         sales_filter = Q()
         if start_date and end_date:
@@ -31,36 +30,22 @@ class CommissionConfigViewSet(ModelViewSet):
             end = datetime.strptime(end_date, "%Y-%m-%d") + timedelta(days=1)
             sales_filter = Q(datetime__gte=start, datetime__lt=end)
 
-        sales_in_period = Sale.objects.filter(sales_filter)
+        sales_in_period = Sale.objects.filter(sales_filter).prefetch_related("items__product", "seller")
 
-        commission_expr = ExpressionWrapper(
-            F("items__quantity")
-            * F("items__product__unit_value")
-            * F("items__product__commission_percentage")
-            / Value(100),
-            output_field=DecimalField(max_digits=10, decimal_places=2),
-        )
+        seller_data = {}
 
-        summary = (
-            sales_in_period.values("seller__id", "seller__code", "seller__name")
-            .annotate(
-                total_sales=Count("id", distinct=True),
-                total_commission=Coalesce(Sum(commission_expr), Value(0), output_field=DecimalField(max_digits=10, decimal_places=2)),
-            )
-            .order_by("seller__code")
-        )
+        for sale in sales_in_period:
+            seller = sale.seller
+            if seller.id not in seller_data:
+                seller_data[seller.id] = {
+                    "seller": seller,
+                    "total_sales": 0,
+                    "total_commission": 0,
+                }
+            seller_data[seller.id]["total_sales"] += 1
+            for item in sale.items.all():
+                seller_data[seller.id]["total_commission"] += float(item.commission_value)
 
-        seller_ids = [row["seller__id"] for row in summary]
-        sellers = Seller.objects.in_bulk(seller_ids)
-
-        payload = []
-        for row in summary:
-            seller = sellers.get(row["seller__id"])
-            payload.append({
-                "seller": seller,
-                "total_sales": row["total_sales"],
-                "total_commission": row["total_commission"],
-            })
-
+        payload = list(seller_data.values())
         serializer = SellerCommissionSummarySerializer(payload, many=True)
         return Response(serializer.data)
